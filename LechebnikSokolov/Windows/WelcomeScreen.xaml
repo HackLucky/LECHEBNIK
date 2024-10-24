@@ -1,0 +1,39 @@
+﻿<Window x:Class="LechebnikSokolov.WelcomeScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LechebnikSokolov"
+        mc:Ignorable="d"
+                Title="StartSplashScreen" Height="540" Width="960" WindowStyle="None" MinWidth="960" MinHeight="540" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxWidth="960" MaxHeight="540" ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush ImageSource="/SplashScreenBack.png" Stretch="Fill"/>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="960"/>
+        </Grid.ColumnDefinitions>
+        <Image HorizontalAlignment="Left" Height="136" Margin="10,10,0,0" VerticalAlignment="Top" Width="470" Source="/Lechebnik logo 7.png">
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="/Lechebnik logo 7.png"/>
+            </Image.OpacityMask>
+        </Image>
+        <Label Content="Загрузка программы..." HorizontalAlignment="Left" Margin="10,490,0,0" VerticalAlignment="Top" Height="40" RenderTransformOrigin="-0.948,0.575" FontFamily="#Arkhip" FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" Foreground="#FFFEFF00" Width="275">
+            <Label.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
+            </Label.Effect>
+        </Label>
+        <ProgressBar IsIndeterminate="True" VerticalAlignment="Top" Height="10" Background="#FF191919" Foreground="#00FF00" BorderBrush="{x:Null}" Margin="0,530,0,0"/>
+        <Label Content="Добро пожаловать," FontFamily="#Arkhip" FontSize="36" Foreground="Yellow" VerticalContentAlignment="Bottom" Margin="160,190,160,270">
+            <Label.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
+            </Label.Effect>
+        </Label>
+        <Label Content="дорогой гость!" FontFamily="#Arkhip" FontSize="36" Foreground="Lime" HorizontalContentAlignment="Right" Margin="160,270,160,190">
+            <Label.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
+            </Label.Effect>
+        </Label>
+
+    </Grid>
+</Window>
