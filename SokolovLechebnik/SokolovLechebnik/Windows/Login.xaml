@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SokolovLechebnik.Windows"
         mc:Ignorable="d"
-        Title="ЛЕЧЕБНИК [АВТОРИЗАЦИЯ]" Height="540" Width="960" Background="{x:Null}" MinWidth="960" MinHeight="540" Icon="/Resources/favicon.ico">
+        Title="ЛЕЧЕБНИК [АВТОРИЗАЦИЯ]" Height="540" Width="960" Background="{x:Null}" MinWidth="960" MinHeight="540" Icon="/Resources/favicon.ico" WindowStartupLocation="CenterScreen">
     <Grid x:Name="GridMain" Background="#FFAFAFAF">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
@@ -134,9 +134,9 @@
                                 <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
                             </Label.Effect>
                         </Label>
-                        <TextBox x:Name="TextBoxPass" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Margin="0,0,0,1" Foreground="Lime"  BorderThickness="1,1,10,1" GotFocus="TextBoxPass_GotFocus" LostFocus="TextBoxPass_LostFocus" TabIndex="1">
-                            <TextBox.Template>
-                                <ControlTemplate TargetType="{x:Type TextBox}">
+                        <PasswordBox x:Name="TextBoxPass" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Margin="0,0,0,1" Foreground="Lime"  BorderThickness="1,1,10,1" GotFocus="TextBoxPass_GotFocus" LostFocus="TextBoxPass_LostFocus" TabIndex="1">
+                            <PasswordBox.Template>
+                                <ControlTemplate TargetType="{x:Type PasswordBox}">
                                     <Border Background="{TemplateBinding Background}" 
                                             BorderBrush="{TemplateBinding BorderBrush}" 
                                             BorderThickness="{TemplateBinding BorderThickness}" 
@@ -144,22 +144,22 @@
                                         <ScrollViewer x:Name="PART_ContentHost"/>
                                     </Border>
                                 </ControlTemplate>
-                            </TextBox.Template>
-                            <TextBox.CaretBrush>
+                            </PasswordBox.Template>
+                            <PasswordBox.CaretBrush>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="Yellow" Offset="0.3"/>
                                     <GradientStop Color="Lime" Offset="0.7"/>
                                     <GradientStop Color="Lime" Offset="0.3"/>
                                     <GradientStop Color="Yellow" Offset="0.7"/>
                                 </LinearGradientBrush>
-                            </TextBox.CaretBrush>
-                            <TextBox.SelectionBrush>
+                            </PasswordBox.CaretBrush>
+                            <PasswordBox.SelectionBrush>
                                 <SolidColorBrush Color="Yellow" Opacity="0.8"/>
-                            </TextBox.SelectionBrush>
-                            <TextBox.SelectionTextBrush>
+                            </PasswordBox.SelectionBrush>
+                            <PasswordBox.SelectionTextBrush>
                                 <SolidColorBrush Color="#FF14FF00" Opacity="0.5"/>
-                            </TextBox.SelectionTextBrush>
-                            <TextBox.BorderBrush>
+                            </PasswordBox.SelectionTextBrush>
+                            <PasswordBox.BorderBrush>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <LinearGradientBrush.RelativeTransform>
                                         <TransformGroup>
@@ -172,8 +172,8 @@
                                     <GradientStop Color="#FFAFAFAF" Offset="0.9"/>
                                     <GradientStop Color="Lime" Offset="0.9"/>
                                 </LinearGradientBrush>
-                            </TextBox.BorderBrush>
-                        </TextBox>
+                            </PasswordBox.BorderBrush>
+                        </PasswordBox>
                     </Grid>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
@@ -204,7 +204,7 @@
                             <ColumnDefinition Width="66*"/>
                             <ColumnDefinition Width="161*"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="ButtonVoity_Копировать" FontFamily="Arial" FontWeight="Bold" FontSize="20" Background="#00000000" Foreground="Yellow" Grid.Column="1" Padding="0,0,0,0" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Cursor="Hand" TabIndex="3" >
+                        <Button x:Name="ButtonVoityRemember" FontFamily="Arial" FontWeight="Bold" FontSize="20" Background="#00000000" Foreground="Yellow" Grid.Column="1" Padding="0,0,0,0" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Cursor="Hand" TabIndex="3" >
                             <Button.Template>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}" BorderThickness="20,5,20,5">
@@ -256,7 +256,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="247*"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="ButtonVoity" FontFamily="Arial" FontWeight="Bold" FontSize="20" Background="#00000000" Foreground="Yellow" Grid.Column="1" Padding="0,0,0,0" BorderBrush="{x:Null}" Click="ButtonVoity_Click" Cursor="Hand" TabIndex="4" >
+                        <Button x:Name="ButtonReg" FontFamily="Arial" FontWeight="Bold" FontSize="20" Background="#00000000" Foreground="Yellow" Grid.Column="1" Padding="0,0,0,0" BorderBrush="{x:Null}" Click="ButtonReg_Click" Cursor="Hand" TabIndex="4" >
                             <Button.Template>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}" BorderThickness="20,5,20,5">
@@ -292,7 +292,7 @@
                             <TextBlock x:Name="TextBlockVoity" Text="ЗАРЕГИСТРИРОВАТЬСЯ" Cursor="Hand"></TextBlock>
                         </Button>
                     </Grid>
-                    <Button x:Name="ButtonReg"  Grid.Row="2" FontFamily="Arial" FontWeight="Bold" FontSize="24" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" TabIndex="2" >
+                    <Button x:Name="ButtonVoity"  Grid.Row="2" FontFamily="Arial" FontWeight="Bold" FontSize="24" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" TabIndex="2" Click="ButtonVoity_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="{TemplateBinding Background}" BorderThickness="20,5,20,5">

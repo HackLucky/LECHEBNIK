@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SokolovLechebnik.Windows"
         mc:Ignorable="d"
-            Title="StartSplashScreen" Height="540" Width="960" WindowStyle="None" MinWidth="960" MinHeight="540" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxWidth="960" MaxHeight="540" ResizeMode="NoResize">
+            Title="StartSplashScreen" Height="540" Width="960" WindowStyle="None" MinWidth="960" MinHeight="540" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxWidth="960" MaxHeight="540" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="/Resources/SplashScreenBack.png" Stretch="Fill"/>
     </Window.Background>

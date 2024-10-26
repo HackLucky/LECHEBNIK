@@ -13,35 +13,27 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
 namespace SokolovLechebnik.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для Registration.xaml
-    /// </summary>
     public partial class Registration : Window
     {
         private bool isLight = true;
         private string initialText = "Приветствую!\nМеня зовут Леча!\nДавайте авторизируем Вас, чтобы дальше пользоваться программой!\nЯ помогу Вам войти в учётную запись!\n\nВы можете поговорить со мной через текстовое поле снизу, задав мне вопросы:\nкто ты? как дела? что делаешь? напишешь факт?\n\nВы всегда сможете вернуться к этому сообщению, тыкнув на меня;)";
-
         public Registration()
         {
             InitializeComponent();
             TextBlockAvatar.Text = initialText; // Устанавливаем изначальный текст
         }
-
         private void ButtonVoity_Click(object sender, RoutedEventArgs e)
         {
             var myForm = new Login();
             myForm.Show();
             this.Close();
         }
-
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
         private void ButtonOnOff_Click(object sender, RoutedEventArgs e)
         {
             if (isLight)
@@ -120,9 +112,7 @@ namespace SokolovLechebnik.Windows
         {
             TextBlockAvatar.Text = initialText; // Восстанавливаем изначальный текст
         }
-
         private string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
-
         private void ButtonReg_Click(object sender, RoutedEventArgs e)
         {
             // Получение данных из текстовых полей
@@ -132,7 +122,6 @@ namespace SokolovLechebnik.Windows
             string phoneNumber = TextBoxTelephone.Text.Trim();
             string mail = TextBoxMail.Text.Trim();
             string password = TextBoxPass.Password;
-
             // Проверка на заполненность обязательных полей
             if (string.IsNullOrWhiteSpace(secondName) || string.IsNullOrWhiteSpace(firstName) ||
                 string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(mail) ||
@@ -141,10 +130,8 @@ namespace SokolovLechebnik.Windows
                 MessageBox.Show("Пожалуйста, заполните все обязательные поля.");
                 return;
             }
-
             // Генерация шестизначного кода восстановления
             string recoveryCode = GenerateRecoveryCode();
-
             try
             {
                 // Проверка на существование пользователя
@@ -156,7 +143,9 @@ namespace SokolovLechebnik.Windows
                 {
                     // Добавление пользователя в базу данных
                     InsertUserToDatabase(secondName, firstName, patronymic, phoneNumber, mail, password, recoveryCode);
-                    MessageBox.Show("Регистрация прошла успешно.");
+                    var myForm = new Main();
+                    myForm.Show();
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -164,34 +153,28 @@ namespace SokolovLechebnik.Windows
                 MessageBox.Show($"Ошибка при регистрации: {ex.Message}");
             }
         }
-
         // Метод генерации случайного шестизначного кода
         private string GenerateRecoveryCode()
         {
             Random random = new Random();
             return random.Next(100000, 999999).ToString();
         }
-
         // Метод проверки на существование пользователя в базе данных по номеру телефона и почте
         private bool UserExists(string phoneNumber, string mail)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
                 string query = "SELECT COUNT(*) FROM Users WHERE phone_number = @phoneNumber OR mail = @mail";
-
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
                     command.Parameters.AddWithValue("@mail", mail);
-
                     int userCount = (int)command.ExecuteScalar();
                     return userCount > 0;
                 }
             }
         }
-
         // Метод добавления нового пользователя в базу данных
         private void InsertUserToDatabase(string secondName, string firstName, string patronymic,
                                           string phoneNumber, string mail, string password, string recoveryCode)
@@ -199,11 +182,9 @@ namespace SokolovLechebnik.Windows
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
                 // SQL-запрос на вставку новой записи в таблицу Users
                 string query = @"INSERT INTO Users (second_name, first_name, patronymic, phone_number, mail, password, recovery_code) 
                                  VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode)";
-
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     // Параметры для защиты от SQL-инъекций
@@ -214,12 +195,10 @@ namespace SokolovLechebnik.Windows
                     command.Parameters.AddWithValue("@mail", mail);
                     command.Parameters.AddWithValue("@password", HashPassword(password)); // Хеширование пароля
                     command.Parameters.AddWithValue("@recoveryCode", recoveryCode);
-
                     command.ExecuteNonQuery();
                 }
             }
         }
-
         // Метод хеширования пароля с использованием SHA256
         private string HashPassword(string password)
         {

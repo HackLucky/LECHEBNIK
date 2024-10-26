@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SokolovLechebnik.Windows"
         mc:Ignorable="d"
-        Title="ЛЕЧЕБНИК [РЕГИСТРАЦИЯ]" Height="540" Width="960" Background="{x:Null}" MinWidth="960" MinHeight="540" Icon="/Resources/favicon.ico">
+        Title="ЛЕЧЕБНИК [РЕГИСТРАЦИЯ]" Height="540" Width="960" Background="{x:Null}" MinWidth="960" MinHeight="540" Icon="/Resources/favicon.ico" WindowStartupLocation="CenterScreen">
     <Grid x:Name="GridMain" Background="#FFAFAFAF">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
