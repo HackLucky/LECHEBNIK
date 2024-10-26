@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -117,6 +119,79 @@ namespace SokolovLechebnik.Windows
         private void TextBoxRetryPass_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = initialText; // Восстанавливаем изначальный текст
+        }
+
+        private string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Получаем значения из текстовых полей
+            string secondName = TextBoxFamilia.Text.Trim();
+            string firstName = TextBoxName.Text.Trim();
+            string patronymic = TextBoxOtchestvo.Text.Trim();
+            string phoneNumber = TextBoxTelephone.Text.Trim();
+            string mail = TextBoxMail.Text.Trim();
+            string password = TextBoxPass.Password;
+
+            // Генерируем случайный шестизначный код
+            string recoveryCode = GenerateRecoveryCode();
+
+            // Вставка данных в базу
+            InsertUserToDatabase(secondName, firstName, patronymic, phoneNumber, mail, password, recoveryCode);
+        }
+
+        private string GenerateRecoveryCode()
+        {
+            Random random = new Random();
+            return random.Next(100000, 999999).ToString();
+        }
+
+        private void InsertUserToDatabase(string secondName, string firstName, string patronymic, string phoneNumber, string mail, string password, string recoveryCode)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = "INSERT INTO Users (second_name, first_name, patronymic, phone_number, mail, password, recovery_code) " +
+                                   "VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode)";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Используем параметры для предотвращения SQL-инъекций
+                        command.Parameters.AddWithValue("@secondName", secondName);
+                        command.Parameters.AddWithValue("@firstName", firstName);
+                        command.Parameters.AddWithValue("@patronymic", patronymic);
+                        command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                        command.Parameters.AddWithValue("@mail", mail);
+                        command.Parameters.AddWithValue("@password", HashPassword(password)); // Хешируем пароль
+                        command.Parameters.AddWithValue("@recoveryCode", recoveryCode);
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Регистрация прошла успешно.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка: {ex.Message}");
+                }
+            }
+        }
+
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                foreach (var b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
     }
 }
