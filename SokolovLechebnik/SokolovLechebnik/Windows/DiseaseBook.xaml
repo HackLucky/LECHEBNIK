@@ -63,8 +63,6 @@
                                 <Button Content="Профиль" Margin="5" Click="ButtonProfile_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                                 <Button Content="Каталог" Margin="5" Click="ButtonCatalog_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                                 <Button Content="Корзина" Margin="5" Click="ButtonBasket_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
-                                <Button Content="Зелья" Margin="5" Click="ButtonPotion_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
-                                <Button Content="Заклинания" Margin="5" Click="ButtonSpell_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                                 <Button Content="О программе" Margin="5" Click="ButtonAbout_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                             </StackPanel>
                         </Border>

@@ -108,6 +108,7 @@ namespace SokolovLechebnik.Windows
             string mail = TextBoxMail.Text.Trim();
             string password = TextBoxPass.Password;
             string recoveryCode = GenerateRecoveryCode();
+
             try
             {
                 if (await UserExistsAsync(phoneNumber, mail))
@@ -121,39 +122,52 @@ namespace SokolovLechebnik.Windows
                 myForm.Show();
                 this.Close();
             }
+            catch (SqlException)
+            {
+                MessageBox.Show("Сервер базы данных недоступен. Попробуйте позже.");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при регистрации: {ex.Message}");
             }
         }
+
         private bool ValidateInput()
         {
-            if (string.IsNullOrWhiteSpace(TextBoxFamilia.Text)||string.IsNullOrWhiteSpace(TextBoxName.Text)||string.IsNullOrWhiteSpace(TextBoxTelephone.Text)||string.IsNullOrWhiteSpace(TextBoxMail.Text)||string.IsNullOrWhiteSpace(TextBoxPass.Password))
+            if (string.IsNullOrWhiteSpace(TextBoxFamilia.Text) || string.IsNullOrWhiteSpace(TextBoxName.Text) ||
+                string.IsNullOrWhiteSpace(TextBoxTelephone.Text) || string.IsNullOrWhiteSpace(TextBoxMail.Text) ||
+                string.IsNullOrWhiteSpace(TextBoxPass.Password) || TextBoxPass.Password.Length < 8)
             {
+                MessageBox.Show("Пароль должен содержать не менее 8 символов.");
                 return false;
             }
+
             if (!Regex.IsMatch(TextBoxMail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 MessageBox.Show("Неправильный формат электронной почты.");
                 return false;
             }
-            if (!Regex.IsMatch(TextBoxTelephone.Text, @"^\d{10}$"))
+
+            if (!Regex.IsMatch(TextBoxTelephone.Text, @"^\d{11}$"))
             {
-                MessageBox.Show("Неправильный формат номера телефона.");
+                MessageBox.Show("Неправильный формат номера телефона. Введите цифры, начиная с 8, вместо +7.");
                 return false;
             }
+
             return true;
         }
+
         private static string GenerateRecoveryCode()
         {
             using (var rng = new RNGCryptoServiceProvider())
             {
                 byte[] data = new byte[4];
                 rng.GetBytes(data);
-                int code = BitConverter.ToInt32(data, 0) % 1000000;
-                return Math.Abs(code).ToString("D6");
+                int code = Math.Abs(BitConverter.ToInt32(data, 0)) % 1000000;
+                return code.ToString("D6");
             }
         }
+
         private async Task<bool> UserExistsAsync(string phoneNumber, string mail)
         {
             try
@@ -172,23 +186,28 @@ namespace SokolovLechebnik.Windows
                     }
                 }
             }
+            catch (SqlException)
+            {
+                MessageBox.Show("Ошибка при проверке существования пользователя. Сервер недоступен.");
+                return false;
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при проверке пользователя: {ex.Message}");
+                MessageBox.Show($"Неизвестная ошибка при проверке пользователя: {ex.Message}");
                 return false;
             }
         }
-        private async Task InsertUserToDatabaseAsync(string secondName, string firstName, string patronymic,
-                                                     string phoneNumber, string mail, string password, string recoveryCode)
+
+        private async Task InsertUserToDatabaseAsync(string secondName, string firstName, string patronymic, string phoneNumber, string mail, string password, string recoveryCode)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                await connection.OpenAsync();
-                SqlTransaction transaction = connection.BeginTransaction();
-                try
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = @"INSERT INTO Users (second_name, first_name, patronymic, phone_number, mail, password, recovery_code) VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode)";
-                    using (SqlCommand command = new SqlCommand(query, connection, transaction))
+                    await connection.OpenAsync();
+                    string query = "INSERT INTO Users (secondName, firstName, patronymic, phoneNumber, mail, password, recoveryCode) VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode)";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@secondName", secondName);
                         command.Parameters.AddWithValue("@firstName", firstName);
@@ -199,15 +218,20 @@ namespace SokolovLechebnik.Windows
                         command.Parameters.AddWithValue("@recoveryCode", recoveryCode);
                         await command.ExecuteNonQueryAsync();
                     }
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    MessageBox.Show($"Ошибка при добавлении пользователя: {ex.Message}");
                 }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ошибка при записи в базу данных. Сервер базы данных недоступен.");
+                throw new Exception("Ошибка подключения к серверу базы данных.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Неизвестная ошибка: {ex.Message}");
+                throw;
+            }
         }
+
         private static string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -221,5 +245,6 @@ namespace SokolovLechebnik.Windows
                 return builder.ToString();
             }
         }
+
     }
 }

@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:SokolovLechebnik"
              StartupUri="/Windows/StartSplash.xaml">
     <Application.Resources>
-
     </Application.Resources>
 </Application>

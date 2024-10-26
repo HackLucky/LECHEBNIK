@@ -5,8 +5,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
-
 namespace SokolovLechebnik.Windows
 {
     public partial class Login : Window
@@ -71,23 +69,39 @@ namespace SokolovLechebnik.Windows
         }
         private bool AuthenticateUser(string email, string password)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                string query = "SELECT password FROM Users WHERE mail = @mail";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@mail", email);
-                    var storedPasswordHash = command.ExecuteScalar() as string;
-                    if (string.IsNullOrEmpty(storedPasswordHash))
+                    connection.Open();
+                    string query = "SELECT password FROM Users WHERE mail = @mail";
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        return false;
+                        command.Parameters.AddWithValue("@mail", email);
+                        var storedPasswordHash = command.ExecuteScalar() as string;
+
+                        if (string.IsNullOrEmpty(storedPasswordHash))
+                        {
+                            return false;
+                        }
+
+                        string passwordHash = HashPassword(password);
+                        return storedPasswordHash == passwordHash;
                     }
-                    string passwordHash = HashPassword(password);
-                    return storedPasswordHash == passwordHash;
                 }
             }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Ошибка подключения к базе данных: {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Неизвестная ошибка: {ex.Message}");
+                return false;
+            }
         }
+
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

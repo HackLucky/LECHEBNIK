@@ -73,17 +73,11 @@
     <Compile Include="Windows\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PotionBook.xaml.cs">
-      <DependentUpon>PotionBook.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\SpellBook.xaml.cs">
-      <DependentUpon>SpellBook.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\StartSplash.xaml.cs">
       <DependentUpon>StartSplash.xaml</DependentUpon>
@@ -119,19 +113,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PotionBook.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\Profile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Registration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\SpellBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

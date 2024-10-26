@@ -45,10 +45,8 @@ C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\D
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\DiseaseBook.g.cs
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Login.g.cs
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Main.g.cs
-C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\PotionBook.g.cs
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Profile.g.cs
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Registration.g.cs
-C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\SpellBook.g.cs
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\StartSplash.g.cs
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Welcome.g.cs
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\App.g.cs
@@ -60,10 +58,8 @@ C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\D
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\DiseaseBook.baml
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Login.baml
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Main.baml
-C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\PotionBook.baml
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Profile.baml
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Registration.baml
-C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\SpellBook.baml
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\StartSplash.baml
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Welcome.baml
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\SokolovLechebnik.g.resources

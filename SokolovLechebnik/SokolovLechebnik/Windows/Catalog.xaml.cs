@@ -1,22 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
 namespace SokolovLechebnik.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для Catalog.xaml
-    /// </summary>
     public partial class Catalog : Window
     {
         private bool isLight = true;
@@ -25,94 +13,40 @@ namespace SokolovLechebnik.Windows
         {
             InitializeComponent();
         }
-        private void ButtonExit_Click(object sender, RoutedEventArgs e)
-        { 
-            this.Close(); 
-        }
+        private void ButtonExit_Click(object sender, RoutedEventArgs e) => Close();
         private void MainButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuPopup.IsOpen = !MenuPopup.IsOpen; // Переключение состояния Popup
-            if (isClick)
-            {
-                ButtonMenu.Background = new ImageBrush
-                {
-                    ImageSource = new BitmapImage(new Uri("pack://application:,,,/Resources/LechebnikLogoMainX.png")),
-                    Stretch = Stretch.Uniform
-                };
-            }
-            else
-            {
-                ButtonMenu.Background = new ImageBrush
-                {
-                    ImageSource = new BitmapImage(new Uri("pack://application:,,,/Resources/LechebnikLogoMain.png")),
-                    Stretch = Stretch.Uniform
-                };
-            }
+            MenuPopup.IsOpen = !MenuPopup.IsOpen;
+            ToggleButtonImage(ButtonMenu, isClick ? "pack://application:,,,/Resources/LechebnikLogoMainX.png" : "pack://application:,,,/Resources/LechebnikLogoMain.png");
             isClick = !isClick;
         }
         private void ButtonOnOff_Click(object sender, RoutedEventArgs e)
         {
-            if (isLight)
-            {
-                // Устанавливаем темный цвет RGB
-                GridMain.Background = new SolidColorBrush(Color.FromRgb(25, 25, 25)); // Темно-серый
-                ButtonOnOff.Background = new ImageBrush
-                {
-                    ImageSource = new BitmapImage(new Uri("pack://application:,,,/Resources/light_mode.png"))
-                };
-            }
-            else
-            {
-                // Устанавливаем светлый цвет RGB
-                GridMain.Background = new SolidColorBrush(Color.FromRgb(175, 175, 175)); // Светло-серый
-                ButtonOnOff.Background = new ImageBrush
-                {
-                    ImageSource = new BitmapImage(new Uri("pack://application:,,,/Resources/dark_mode.png"))
-                };
-            }
+            ToggleTheme(isLight);
+            ToggleButtonImage(ButtonOnOff, isLight ? "pack://application:,,,/Resources/dark_mode.png" : "pack://application:,,,/Resources/light_mode.png");
             isLight = !isLight;
         }
-        private void ButtonMain_Click(object sender, RoutedEventArgs e)
+        private void ToggleTheme(bool isLightTheme)
         {
-            var myForm = new Main();
-            myForm.Show();
-            this.Close();
+            GridMain.Background = new SolidColorBrush(Color.FromRgb(isLightTheme ? (byte)175 : (byte)25, isLightTheme ? (byte)175 : (byte)25, isLightTheme ? (byte)175 : (byte)25));
         }
-        private void ButtonProfile_Click(object sender, RoutedEventArgs e)
+        private void ToggleButtonImage(Button button, string imageUri)
         {
-            var myForm = new Profile();
-            myForm.Show();
-            this.Close();
+            button.Background = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri(imageUri)),
+                Stretch = Stretch.Uniform
+            };
         }
-        private void ButtonBasket_Click(object sender, RoutedEventArgs e)
+        private void OpenWindowAndCloseCurrent<T>() where T : Window, new()
         {
-            var myForm = new Basket();
-            myForm.Show();
-            this.Close();
+            new T().Show();
+            Close();
         }
-        private void ButtonDisease_Click(object sender, RoutedEventArgs e)
-        {
-            var myForm = new DiseaseBook();
-            myForm.Show();
-            this.Close();
-        }
-        private void ButtonPotion_Click(object sender, RoutedEventArgs e)
-        {
-            var myForm = new PotionBook();
-            myForm.Show();
-            this.Close();
-        }
-        private void ButtonSpell_Click(object sender, RoutedEventArgs e)
-        {
-            var myForm = new SpellBook();
-            myForm.Show();
-            this.Close();
-        }
-        private void ButtonAbout_Click(object sender, RoutedEventArgs e)
-        {
-            var myForm = new About();
-            myForm.Show();
-            this.Close();
-        }
+        private void ButtonMain_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Main>();
+        private void ButtonProfile_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Profile>();
+        private void ButtonBasket_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Basket>();
+        private void ButtonDisease_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<DiseaseBook>();
+        private void ButtonAbout_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<About>();
     }
 }

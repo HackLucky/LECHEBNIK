@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SokolovLechebnik.Windows"
         mc:Ignorable="d"
-            Title="StartSplashScreen" Height="540" Width="960" WindowStyle="None" MinWidth="960" MinHeight="540" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxWidth="960" MaxHeight="540" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+            Title="StartSplashScreen" Height="540" Width="960" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
-        <ImageBrush ImageSource="/Resources/SplashScreenBack.png" Stretch="Fill"/>
+        <ImageBrush ImageSource="/Resources/SplashScreenBack.png"/>
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,7 +18,7 @@
                 <ImageBrush ImageSource="/Resources/LechebnikLogo.png"/>
             </Image.OpacityMask>
         </Image>
-        <Label Content="Загрузка программы..." HorizontalAlignment="Left" Margin="10,490,0,0" VerticalAlignment="Top" Height="40" RenderTransformOrigin="-0.948,0.575" FontFamily="#Arkhip" FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" Foreground="#FFFEFF00" Width="275">
+        <Label Content="Загрузка программы..." HorizontalAlignment="Left" Margin="10,490,0,0" VerticalAlignment="Top" Height="40" FontFamily="#Arkhip" FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" Foreground="#FFFEFF00" Width="275">
             <Label.Effect>
                 <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
             </Label.Effect>
