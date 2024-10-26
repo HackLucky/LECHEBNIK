@@ -1,28 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 namespace SokolovLechebnik.Windows
 {
     public partial class Registration : Window
     {
         private bool isLight = true;
-        private string initialText = "Приветствую!\nМеня зовут Леча!\nДавайте авторизируем Вас, чтобы дальше пользоваться программой!\nЯ помогу Вам войти в учётную запись!\n\nВы можете поговорить со мной через текстовое поле снизу, задав мне вопросы:\nкто ты? как дела? что делаешь? напишешь факт?\n\nВы всегда сможете вернуться к этому сообщению, тыкнув на меня;)";
+        private readonly string initialText = "Приветствую!\nМеня зовут Леча!\nДавайте авторизируем Вас, чтобы дальше пользоваться программой!\nЯ помогу Вам войти в учётную запись!\n\nВы можете поговорить со мной через текстовое поле снизу, задав мне вопросы:\nкто ты? как дела? что делаешь? напишешь факт?\n\nВы всегда сможете вернуться к этому сообщению, тыкнув на меня;)";
+        private readonly string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
         public Registration()
         {
             InitializeComponent();
-            TextBlockAvatar.Text = initialText; // Устанавливаем изначальный текст
+            TextBlockAvatar.Text = initialText;
         }
         private void ButtonVoity_Click(object sender, RoutedEventArgs e)
         {
@@ -36,33 +31,12 @@ namespace SokolovLechebnik.Windows
         }
         private void ButtonOnOff_Click(object sender, RoutedEventArgs e)
         {
-            if (isLight)
+            GridMain.Background = isLight? new SolidColorBrush(Color.FromRgb(25, 25, 25)): new SolidColorBrush(Color.FromRgb(175, 175, 175));
+            ButtonOnOff.Background = new ImageBrush
             {
-                // Устанавливаем темный цвет RGB
-                GridMain.Background = new SolidColorBrush(Color.FromRgb(25, 25, 25)); // Темно-серый
-                ButtonOnOff.Background = new ImageBrush
-                {
-                    ImageSource = new BitmapImage(new Uri("pack://application:,,,/Resources/light_mode.png"))
-                };
-            }
-            else
-            {
-                // Устанавливаем светлый цвет RGB
-                GridMain.Background = new SolidColorBrush(Color.FromRgb(175, 175, 175)); // Светло-серый
-                ButtonOnOff.Background = new ImageBrush
-                {
-                    ImageSource = new BitmapImage(new Uri("pack://application:,,,/Resources/dark_mode.png"))
-                };
-            }
+                ImageSource = new BitmapImage(new Uri(isLight?"pack://application:,,,/Resources/light_mode.png":"pack://application:,,,/Resources/dark_mode.png"))
+            };
             isLight = !isLight;
-        }
-        private void TextBoxName_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBlockAvatar.Text = "Подсказка: в это текстовое поле нужно ввести Ваше прекрасное имя;)";
-        }
-        private void TextBoxName_LostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBlockAvatar.Text = initialText; // Восстанавливаем изначальный текст
         }
         private void TextBoxFamilia_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -70,7 +44,15 @@ namespace SokolovLechebnik.Windows
         }
         private void TextBoxFamilia_LostFocus(object sender, RoutedEventArgs e)
         {
-            TextBlockAvatar.Text = initialText; // Восстанавливаем изначальный текст
+            TextBlockAvatar.Text = initialText;
+        }
+        private void TextBoxName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBlockAvatar.Text = "Подсказка: в это текстовое поле нужно ввести Ваше прекрасное имя;)";
+        }
+        private void TextBoxName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBlockAvatar.Text = initialText;
         }
         private void TextBoxOtchestvo_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -78,7 +60,7 @@ namespace SokolovLechebnik.Windows
         }
         private void TextBoxOtchestvo_LostFocus(object sender, RoutedEventArgs e)
         {
-            TextBlockAvatar.Text = initialText; // Восстанавливаем изначальный текст
+            TextBlockAvatar.Text = initialText;
         }
         private void TextBoxTelephone_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -86,7 +68,7 @@ namespace SokolovLechebnik.Windows
         }
         private void TextBoxTelephone_LostFocus(object sender, RoutedEventArgs e)
         {
-            TextBlockAvatar.Text = initialText; // Восстанавливаем изначальный текст
+            TextBlockAvatar.Text = initialText;
         }
         private void TextBoxMail_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -94,7 +76,7 @@ namespace SokolovLechebnik.Windows
         }
         private void TextBoxMail_LostFocus(object sender, RoutedEventArgs e)
         {
-            TextBlockAvatar.Text = initialText; // Восстанавливаем изначальный текст
+            TextBlockAvatar.Text = initialText;
         }
         private void TextBoxPass_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -102,7 +84,7 @@ namespace SokolovLechebnik.Windows
         }
         private void TextBoxPass_LostFocus(object sender, RoutedEventArgs e)
         {
-            TextBlockAvatar.Text = initialText; // Восстанавливаем изначальный текст
+            TextBlockAvatar.Text = initialText;
         }
         private void TextBoxRetryPass_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -110,97 +92,123 @@ namespace SokolovLechebnik.Windows
         }
         private void TextBoxRetryPass_LostFocus(object sender, RoutedEventArgs e)
         {
-            TextBlockAvatar.Text = initialText; // Восстанавливаем изначальный текст
+            TextBlockAvatar.Text = initialText;
         }
-        private string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
-        private void ButtonReg_Click(object sender, RoutedEventArgs e)
+        private async void ButtonReg_Click(object sender, RoutedEventArgs e)
         {
-            // Получение данных из текстовых полей
+            if (!ValidateInput())
+            {
+                MessageBox.Show("Пожалуйста, заполните все обязательные поля корректно.");
+                return;
+            }
             string secondName = TextBoxFamilia.Text.Trim();
             string firstName = TextBoxName.Text.Trim();
             string patronymic = TextBoxOtchestvo.Text.Trim();
             string phoneNumber = TextBoxTelephone.Text.Trim();
             string mail = TextBoxMail.Text.Trim();
             string password = TextBoxPass.Password;
-            // Проверка на заполненность обязательных полей
-            if (string.IsNullOrWhiteSpace(secondName) || string.IsNullOrWhiteSpace(firstName) ||
-                string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(mail) ||
-                string.IsNullOrWhiteSpace(password))
-            {
-                MessageBox.Show("Пожалуйста, заполните все обязательные поля.");
-                return;
-            }
-            // Генерация шестизначного кода восстановления
             string recoveryCode = GenerateRecoveryCode();
             try
             {
-                // Проверка на существование пользователя
-                if (UserExists(phoneNumber, mail))
+                if (await UserExistsAsync(phoneNumber, mail))
                 {
                     MessageBox.Show("Пользователь с таким номером телефона или почтой уже зарегистрирован.");
+                    return;
                 }
-                else
-                {
-                    // Добавление пользователя в базу данных
-                    InsertUserToDatabase(secondName, firstName, patronymic, phoneNumber, mail, password, recoveryCode);
-                    var myForm = new Main();
-                    myForm.Show();
-                    this.Close();
-                }
+                await InsertUserToDatabaseAsync(secondName, firstName, patronymic, phoneNumber, mail, password, recoveryCode);
+
+                var myForm = new Main();
+                myForm.Show();
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при регистрации: {ex.Message}");
             }
         }
-        // Метод генерации случайного шестизначного кода
-        private string GenerateRecoveryCode()
+        private bool ValidateInput()
         {
-            Random random = new Random();
-            return random.Next(100000, 999999).ToString();
+            if (string.IsNullOrWhiteSpace(TextBoxFamilia.Text)||string.IsNullOrWhiteSpace(TextBoxName.Text)||string.IsNullOrWhiteSpace(TextBoxTelephone.Text)||string.IsNullOrWhiteSpace(TextBoxMail.Text)||string.IsNullOrWhiteSpace(TextBoxPass.Password))
+            {
+                return false;
+            }
+            if (!Regex.IsMatch(TextBoxMail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Неправильный формат электронной почты.");
+                return false;
+            }
+            if (!Regex.IsMatch(TextBoxTelephone.Text, @"^\d{10}$"))
+            {
+                MessageBox.Show("Неправильный формат номера телефона.");
+                return false;
+            }
+            return true;
         }
-        // Метод проверки на существование пользователя в базе данных по номеру телефона и почте
-        private bool UserExists(string phoneNumber, string mail)
+        private static string GenerateRecoveryCode()
+        {
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                byte[] data = new byte[4];
+                rng.GetBytes(data);
+                int code = BitConverter.ToInt32(data, 0) % 1000000;
+                return Math.Abs(code).ToString("D6");
+            }
+        }
+        private async Task<bool> UserExistsAsync(string phoneNumber, string mail)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+                    string query = "SELECT COUNT(*) FROM Users WHERE phone_number = @phoneNumber OR mail = @mail";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                        command.Parameters.AddWithValue("@mail", mail);
+
+                        int userCount = (int)await command.ExecuteScalarAsync();
+                        return userCount > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при проверке пользователя: {ex.Message}");
+                return false;
+            }
+        }
+        private async Task InsertUserToDatabaseAsync(string secondName, string firstName, string patronymic,
+                                                     string phoneNumber, string mail, string password, string recoveryCode)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                string query = "SELECT COUNT(*) FROM Users WHERE phone_number = @phoneNumber OR mail = @mail";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                await connection.OpenAsync();
+                SqlTransaction transaction = connection.BeginTransaction();
+                try
                 {
-                    command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
-                    command.Parameters.AddWithValue("@mail", mail);
-                    int userCount = (int)command.ExecuteScalar();
-                    return userCount > 0;
+                    string query = @"INSERT INTO Users (second_name, first_name, patronymic, phone_number, mail, password, recovery_code) VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode)";
+                    using (SqlCommand command = new SqlCommand(query, connection, transaction))
+                    {
+                        command.Parameters.AddWithValue("@secondName", secondName);
+                        command.Parameters.AddWithValue("@firstName", firstName);
+                        command.Parameters.AddWithValue("@patronymic", patronymic);
+                        command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                        command.Parameters.AddWithValue("@mail", mail);
+                        command.Parameters.AddWithValue("@password", HashPassword(password));
+                        command.Parameters.AddWithValue("@recoveryCode", recoveryCode);
+                        await command.ExecuteNonQueryAsync();
+                    }
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show($"Ошибка при добавлении пользователя: {ex.Message}");
                 }
             }
         }
-        // Метод добавления нового пользователя в базу данных
-        private void InsertUserToDatabase(string secondName, string firstName, string patronymic,
-                                          string phoneNumber, string mail, string password, string recoveryCode)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                // SQL-запрос на вставку новой записи в таблицу Users
-                string query = @"INSERT INTO Users (second_name, first_name, patronymic, phone_number, mail, password, recovery_code) 
-                                 VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode)";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    // Параметры для защиты от SQL-инъекций
-                    command.Parameters.AddWithValue("@secondName", secondName);
-                    command.Parameters.AddWithValue("@firstName", firstName);
-                    command.Parameters.AddWithValue("@patronymic", patronymic);
-                    command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
-                    command.Parameters.AddWithValue("@mail", mail);
-                    command.Parameters.AddWithValue("@password", HashPassword(password)); // Хеширование пароля
-                    command.Parameters.AddWithValue("@recoveryCode", recoveryCode);
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-        // Метод хеширования пароля с использованием SHA256
-        private string HashPassword(string password)
+        private static string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
             {

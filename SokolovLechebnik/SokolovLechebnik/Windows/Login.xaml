@@ -192,7 +192,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="289*"/>
                         </Grid.ColumnDefinitions>
-                        <Label FontFamily="Arial" FontSize="18" VerticalContentAlignment="Center" Foreground="Yellow" Content="Забыли пароль?" HorizontalContentAlignment="Center" Grid.ColumnSpan="2">
+                        <Label FontFamily="Arial" FontSize="18" VerticalContentAlignment="Center" Foreground="#FF969600" Content="Забыли пароль?" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" IsEnabled="False">
                             <Label.Effect>
                                 <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
                             </Label.Effect>
@@ -204,7 +204,7 @@
                             <ColumnDefinition Width="66*"/>
                             <ColumnDefinition Width="161*"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="ButtonVoityRemember" FontFamily="Arial" FontWeight="Bold" FontSize="20" Background="#00000000" Foreground="Yellow" Grid.Column="1" Padding="0,0,0,0" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Cursor="Hand" TabIndex="3" >
+                        <Button x:Name="ButtonVoityRemember" FontFamily="Arial" FontWeight="Bold" FontSize="20" Background="#00000000" Foreground="#FF969600" Grid.Column="1" Padding="0,0,0,0" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Cursor="Hand" TabIndex="3" IsEnabled="False" >
                             <Button.Template>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}" BorderThickness="20,5,20,5">
@@ -218,10 +218,10 @@
                                                         <TranslateTransform/>
                                                     </TransformGroup>
                                                 </LinearGradientBrush.RelativeTransform>
-                                                <GradientStop Color="Yellow" Offset="0.25"/>
+                                                <GradientStop Color="#FF969600" Offset="0.25"/>
                                                 <GradientStop Color="#00AFAFAF" Offset="0.25"/>
                                                 <GradientStop Color="#00AFAFAF" Offset="0.75"/>
-                                                <GradientStop Color="Yellow" Offset="0.75"/>
+                                                <GradientStop Color="#FF969600" Offset="0.75"/>
                                             </LinearGradientBrush>
                                         </Border.BorderBrush>
                                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -232,7 +232,7 @@
                                 <Style TargetType="{x:Type Button}">
                                     <Setter Property="Effect">
                                         <Setter.Value>
-                                            <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
+                                            <DropShadowEffect Color="#000" BlurRadius="0" ShadowDepth="4"/>
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
@@ -258,18 +258,10 @@
                         </Grid.ColumnDefinitions>
                         <Button x:Name="ButtonReg" FontFamily="Arial" FontWeight="Bold" FontSize="20" Background="#00000000" Foreground="Yellow" Grid.Column="1" Padding="0,0,0,0" BorderBrush="{x:Null}" Click="ButtonReg_Click" Cursor="Hand" TabIndex="4" >
                             <Button.Template>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border Background="{TemplateBinding Background}" BorderThickness="20,5,20,5">
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderThickness="20,5">
                                         <Border.BorderBrush>
                                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                <LinearGradientBrush.RelativeTransform>
-                                                    <TransformGroup>
-                                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                                        <RotateTransform Angle="-45" CenterX="0.5" CenterY="0.5"/>
-                                                        <TranslateTransform/>
-                                                    </TransformGroup>
-                                                </LinearGradientBrush.RelativeTransform>
                                                 <GradientStop Color="Yellow" Offset="0.25"/>
                                                 <GradientStop Color="#00AFAFAF" Offset="0.25"/>
                                                 <GradientStop Color="#00AFAFAF" Offset="0.75"/>
@@ -281,15 +273,33 @@
                                 </ControlTemplate>
                             </Button.Template>
                             <Button.Style>
-                                <Style TargetType="{x:Type Button}">
+                                <Style TargetType="Button">
                                     <Setter Property="Effect">
                                         <Setter.Value>
-                                            <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"></DropShadowEffect>
+                                            <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
                                         </Setter.Value>
                                     </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#FF969600"/>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#FF969600" BlurRadius="15" ShadowDepth="0"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="Black" BlurRadius="20" ShadowDepth="0"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                             </Button.Style>
-                            <TextBlock x:Name="TextBlockVoity" Text="ЗАРЕГИСТРИРОВАТЬСЯ" Cursor="Hand"></TextBlock>
+                            <TextBlock x:Name="TextBlockVoity" Text="ЗАРЕГИСТРИРОВАТЬСЯ" Cursor="Hand"/>
                         </Button>
                     </Grid>
                     <Button x:Name="ButtonVoity"  Grid.Row="2" FontFamily="Arial" FontWeight="Bold" FontSize="24" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" TabIndex="2" Click="ButtonVoity_Click">
@@ -331,12 +341,10 @@
             </Border>
         </Grid>
         <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="ButtonExit" FontFamily="Arial" FontWeight="Bold" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" Grid.Column="1" FontSize="24" Margin="13,0,13,0" BorderBrush="{x:Null}" Click="ButtonExit_Click" Cursor="Hand" TabIndex="5" >
+            <Button x:Name="ButtonExit" FontFamily="Arial" FontWeight="Bold" Background="Transparent" Foreground="Yellow" Padding="0" FontSize="24" Margin="13,0" BorderBrush="{x:Null}" Click="ButtonExit_Click" Cursor="Hand" Grid.Column="1" TabIndex="9">
                 <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" BorderThickness="20,5,20,5">
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="20,5">
                             <Border.BorderBrush>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <LinearGradientBrush.RelativeTransform>
@@ -358,15 +366,33 @@
                     </ControlTemplate>
                 </Button.Template>
                 <Button.Style>
-                    <Style TargetType="{x:Type Button}">
+                    <Style TargetType="Button">
                         <Setter Property="Effect">
                             <Setter.Value>
-                                <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"></DropShadowEffect>
+                                <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
                             </Setter.Value>
                         </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF969600"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#FF969600" BlurRadius="15" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Black" BlurRadius="20" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </Button.Style>
-                <TextBlock x:Name="TextBlockExit" Text="ВЫЙТИ ИЗ ПРОГРАММЫ" Cursor="Hand"></TextBlock>
+                <TextBlock x:Name="TextBlockExit" Text="ВЫЙТИ ИЗ ПРОГРАММЫ" Cursor="Hand"/>
             </Button>
         </Grid>
         <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Grid.Column="1" Grid.Row="1">
@@ -385,26 +411,23 @@
                 <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
             </Border.Effect>
         </Border>
-        <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Grid.Column="2" Grid.Row="1" Margin="10,10,10,10">
+        <Border BorderBrush="#FF323232" BorderThickness="3" Grid.Column="2" Grid.Row="1" Margin="10">
             <Border.Effect>
                 <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
             </Border.Effect>
             <Grid>
-                <Button x:Name="ButtonImageAvatar" BorderBrush="{x:Null}" Cursor="Hand" TabIndex="7">
+                <Button x:Name="ButtonImageAvatar" BorderBrush="{x:Null}" Cursor="Hand" TabIndex="11">
                     <Button.Background>
                         <ImageBrush ImageSource="/Resources/AvatarLecha.png"/>
                     </Button.Background>
                 </Button>
             </Grid>
         </Border>
-
-        <TextBox x:Name="TextBoxForAvatar" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Foreground="Lime" BorderThickness="10,3,10,3" Margin="10,10,10,10" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" TabIndex="8">
+        <TextBox x:Name="TextBoxForAvatar" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="18" Background="#FF323232" Foreground="Lime" BorderThickness="10,3,10,3" Margin="10" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" TabIndex="12" ScrollViewer.CanContentScroll="True">
             <TextBox.Template>
-                <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}" 
-                        BorderThickness="{TemplateBinding BorderThickness}" 
-                        CornerRadius="10,10,10,10">
+                <ControlTemplate TargetType="TextBox">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
                         <ScrollViewer x:Name="PART_ContentHost"/>
                     </Border>
                 </ControlTemplate>
@@ -446,22 +469,24 @@
         </TextBox>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0,5*"/>
-                <RowDefinition Height="0,5*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0,2*"/>
-                <ColumnDefinition Width="0,2*"/>
-                <ColumnDefinition Width="0,2*"/>
-                <ColumnDefinition Width="0,2*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="ButtonOnOff" Grid.Column="3" BorderBrush="#FF646464" Foreground="{x:Null}" Click="ButtonOnOff_Click" Background="{x:Null}" Cursor="Hand" TabIndex="6">
-                <Image x:Name="TurnNight" Source="/Resources/dark_mode.png" Stretch="Uniform" Cursor="Hand"/>
+            <Button x:Name="ButtonOnOff" Grid.Column="3" BorderBrush="#FF646464" Cursor="Hand" TabIndex="10" Click="ButtonOnOff_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Resources/dark_mode.png" Stretch="Uniform"/>
+                </Button.Background>
                 <Button.Style>
-                    <Style TargetType="{x:Type Button}">
+                    <Style TargetType="Button">
                         <Setter Property="Effect">
                             <Setter.Value>
-                                <DropShadowEffect Color="Lime" BlurRadius="5" ShadowDepth="0" Opacity="1"></DropShadowEffect>
+                                <DropShadowEffect Color="Lime" BlurRadius="5" ShadowDepth="0"/>
                             </Setter.Value>
                         </Setter>
                     </Style>
