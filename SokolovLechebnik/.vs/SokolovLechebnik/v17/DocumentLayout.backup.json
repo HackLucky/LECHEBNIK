@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\registration.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\sokolovlechebnik\\windows\\registration.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\registration.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +34,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Login.xaml.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Login.xaml.cs",
               "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Login.xaml.cs",
@@ -53,14 +53,14 @@
               "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Registration.xaml.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Registration.xaml.cs",
               "RelativeToolTip": "SokolovLechebnik\\Windows\\Registration.xaml.cs",
-              "ViewState": "AgIAAMMAAAAAAAAAAAAAAKoAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAAALgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-26T21:30:40.463Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Registration.xaml",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Registration.xaml",
               "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Registration.xaml",
