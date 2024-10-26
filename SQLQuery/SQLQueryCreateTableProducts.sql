@@ -1,5 +1,5 @@
 CREATE TABLE Products (
-    id_medicine INT PRIMARY KEY,
+    id_medicine INT IDENTITY(1,1) PRIMARY KEY,
     products_name VARCHAR(100),
     id_reason INT,
     id_taking INT,

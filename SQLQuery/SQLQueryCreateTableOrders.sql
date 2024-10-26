@@ -1,5 +1,5 @@
 CREATE TABLE Orders (
-    id_sale INT PRIMARY KEY,
+    id_sale INT IDENTITY(1,1) PRIMARY KEY,
     id_customer INT,
     id_medicine INT,
     order_date DATE,
