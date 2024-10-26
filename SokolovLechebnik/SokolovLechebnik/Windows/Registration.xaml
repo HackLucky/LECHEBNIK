@@ -78,12 +78,12 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="289*"/>
                         </Grid.ColumnDefinitions>
-                        <Label x:Name="LabelName" Content="Имя:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,10,0" FontFamily="Arial" FontSize="18" FontWeight="Bold" Foreground="Yellow" BorderBrush="Yellow" BorderThickness="0,0,10,0" MinWidth="167.524017467249" MinHeight="28.7100464967132">
+                        <Label x:Name="LabelName" Content="Фамилия:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,10,0" FontFamily="Arial" FontSize="18" FontWeight="Bold" Foreground="Yellow" BorderBrush="Yellow" BorderThickness="0,0,10,0" MinWidth="167.524017467249" MinHeight="28.7100464967132">
                             <Label.Effect>
                                 <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="1"/>
                             </Label.Effect>
                         </Label>
-                        <TextBox x:Name="TextBoxName" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Foreground="Lime" BorderThickness="1,1,10,1" GotFocus="TextBoxName_GotFocus" LostFocus="TextBoxName_LostFocus" TabIndex="0">
+                        <TextBox x:Name="TextBoxFamilia" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Foreground="Lime" BorderThickness="1,1,10,1" GotFocus="TextBoxName_GotFocus" LostFocus="TextBoxName_LostFocus" TabIndex="0">
                             <TextBox.Template>
                                 <ControlTemplate TargetType="{x:Type TextBox}">
                                     <Border Background="{TemplateBinding Background}" 
@@ -129,12 +129,12 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="289*"/>
                         </Grid.ColumnDefinitions>
-                        <Label x:Name="LabelFamilia" Content="Фамилия:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,10,0" FontFamily="Arial" FontSize="18" FontWeight="Bold" Foreground="Yellow" BorderBrush="Yellow" BorderThickness="0,0,10,0" MinWidth="167.524017467249" MinHeight="28.7100464967132">
+                        <Label x:Name="LabelFamilia" Content="Имя:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,10,0" FontFamily="Arial" FontSize="18" FontWeight="Bold" Foreground="Yellow" BorderBrush="Yellow" BorderThickness="0,0,10,0" MinWidth="167.524017467249" MinHeight="28.7100464967132">
                             <Label.Effect>
                                 <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
                             </Label.Effect>
                         </Label>
-                        <TextBox x:Name="TextBoxFamilia" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Margin="0,0,0,1" Foreground="Lime"  BorderThickness="1,1,10,1" GotFocus="TextBoxFamilia_GotFocus" LostFocus="TextBoxFamilia_LostFocus" TabIndex="1">
+                        <TextBox x:Name="TextBoxName" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Margin="0,0,0,1" Foreground="Lime"  BorderThickness="1,1,10,1" GotFocus="TextBoxFamilia_GotFocus" LostFocus="TextBoxFamilia_LostFocus" TabIndex="1">
                             <TextBox.Template>
                                 <ControlTemplate TargetType="{x:Type TextBox}">
                                     <Border Background="{TemplateBinding Background}" 

@@ -125,7 +125,7 @@ namespace SokolovLechebnik.Windows
 
         private void ButtonReg_Click(object sender, RoutedEventArgs e)
         {
-            // Получаем значения из текстовых полей
+            // Получение данных из текстовых полей
             string secondName = TextBoxFamilia.Text.Trim();
             string firstName = TextBoxName.Text.Trim();
             string patronymic = TextBoxOtchestvo.Text.Trim();
@@ -133,66 +133,89 @@ namespace SokolovLechebnik.Windows
             string mail = TextBoxMail.Text.Trim();
             string password = TextBoxPass.Password;
 
-            // Проверка на заполненность полей
-            if (string.IsNullOrEmpty(secondName) || string.IsNullOrEmpty(firstName) ||
-                string.IsNullOrEmpty(phoneNumber) || string.IsNullOrEmpty(mail) ||
-                string.IsNullOrEmpty(password))
+            // Проверка на заполненность обязательных полей
+            if (string.IsNullOrWhiteSpace(secondName) || string.IsNullOrWhiteSpace(firstName) ||
+                string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(mail) ||
+                string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Заполните все обязательные поля.");
+                MessageBox.Show("Пожалуйста, заполните все обязательные поля.");
                 return;
             }
 
             // Генерация шестизначного кода восстановления
             string recoveryCode = GenerateRecoveryCode();
 
-            // Попытка подключения и вставки данных
-            InsertUserToDatabase(secondName, firstName, patronymic, phoneNumber, mail, password, recoveryCode);
+            try
+            {
+                // Проверка на существование пользователя
+                if (UserExists(phoneNumber, mail))
+                {
+                    MessageBox.Show("Пользователь с таким номером телефона или почтой уже зарегистрирован.");
+                }
+                else
+                {
+                    // Добавление пользователя в базу данных
+                    InsertUserToDatabase(secondName, firstName, patronymic, phoneNumber, mail, password, recoveryCode);
+                    MessageBox.Show("Регистрация прошла успешно.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при регистрации: {ex.Message}");
+            }
         }
 
-        // Метод генерации шестизначного кода
+        // Метод генерации случайного шестизначного кода
         private string GenerateRecoveryCode()
         {
             Random random = new Random();
             return random.Next(100000, 999999).ToString();
         }
 
-        // Метод вставки пользователя в базу данных
+        // Метод проверки на существование пользователя в базе данных по номеру телефона и почте
+        private bool UserExists(string phoneNumber, string mail)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Users WHERE phone_number = @phoneNumber OR mail = @mail";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                    command.Parameters.AddWithValue("@mail", mail);
+
+                    int userCount = (int)command.ExecuteScalar();
+                    return userCount > 0;
+                }
+            }
+        }
+
+        // Метод добавления нового пользователя в базу данных
         private void InsertUserToDatabase(string secondName, string firstName, string patronymic,
                                           string phoneNumber, string mail, string password, string recoveryCode)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                try
+                connection.Open();
+
+                // SQL-запрос на вставку новой записи в таблицу Users
+                string query = @"INSERT INTO Users (second_name, first_name, patronymic, phone_number, mail, password, recovery_code) 
+                                 VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    connection.Open();
+                    // Параметры для защиты от SQL-инъекций
+                    command.Parameters.AddWithValue("@secondName", secondName);
+                    command.Parameters.AddWithValue("@firstName", firstName);
+                    command.Parameters.AddWithValue("@patronymic", patronymic);
+                    command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                    command.Parameters.AddWithValue("@mail", mail);
+                    command.Parameters.AddWithValue("@password", HashPassword(password)); // Хеширование пароля
+                    command.Parameters.AddWithValue("@recoveryCode", recoveryCode);
 
-                    // Запрос для вставки нового пользователя
-                    string query = "INSERT INTO Users (second_name, first_name, patronymic, phone_number, mail, password, recovery_code) " +
-                                   "VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode)";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        // Используем параметры для предотвращения SQL-инъекций
-                        command.Parameters.AddWithValue("@secondName", secondName);
-                        command.Parameters.AddWithValue("@firstName", firstName);
-                        command.Parameters.AddWithValue("@patronymic", patronymic);
-                        command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
-                        command.Parameters.AddWithValue("@mail", mail);
-                        command.Parameters.AddWithValue("@password", HashPassword(password)); // Хешируем пароль
-                        command.Parameters.AddWithValue("@recoveryCode", recoveryCode);
-
-                        command.ExecuteNonQuery();
-                    }
-
-                    MessageBox.Show("Регистрация прошла успешно.");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка при регистрации: {ex.Message}");
-                }
-                finally
-                {
-                    connection.Close(); // Закрываем подключение
+                    command.ExecuteNonQuery();
                 }
             }
         }
