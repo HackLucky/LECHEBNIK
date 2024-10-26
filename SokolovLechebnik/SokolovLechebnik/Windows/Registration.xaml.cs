@@ -123,7 +123,7 @@ namespace SokolovLechebnik.Windows
 
         private string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonReg_Click(object sender, RoutedEventArgs e)
         {
             // Получаем значения из текстовых полей
             string secondName = TextBoxFamilia.Text.Trim();
@@ -133,20 +133,32 @@ namespace SokolovLechebnik.Windows
             string mail = TextBoxMail.Text.Trim();
             string password = TextBoxPass.Password;
 
-            // Генерируем случайный шестизначный код
+            // Проверка на заполненность полей
+            if (string.IsNullOrEmpty(secondName) || string.IsNullOrEmpty(firstName) ||
+                string.IsNullOrEmpty(phoneNumber) || string.IsNullOrEmpty(mail) ||
+                string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Заполните все обязательные поля.");
+                return;
+            }
+
+            // Генерация шестизначного кода восстановления
             string recoveryCode = GenerateRecoveryCode();
 
-            // Вставка данных в базу
+            // Попытка подключения и вставки данных
             InsertUserToDatabase(secondName, firstName, patronymic, phoneNumber, mail, password, recoveryCode);
         }
 
+        // Метод генерации шестизначного кода
         private string GenerateRecoveryCode()
         {
             Random random = new Random();
             return random.Next(100000, 999999).ToString();
         }
 
-        private void InsertUserToDatabase(string secondName, string firstName, string patronymic, string phoneNumber, string mail, string password, string recoveryCode)
+        // Метод вставки пользователя в базу данных
+        private void InsertUserToDatabase(string secondName, string firstName, string patronymic,
+                                          string phoneNumber, string mail, string password, string recoveryCode)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -154,6 +166,7 @@ namespace SokolovLechebnik.Windows
                 {
                     connection.Open();
 
+                    // Запрос для вставки нового пользователя
                     string query = "INSERT INTO Users (second_name, first_name, patronymic, phone_number, mail, password, recovery_code) " +
                                    "VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode)";
 
@@ -175,11 +188,16 @@ namespace SokolovLechebnik.Windows
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка: {ex.Message}");
+                    MessageBox.Show($"Ошибка при регистрации: {ex.Message}");
+                }
+                finally
+                {
+                    connection.Close(); // Закрываем подключение
                 }
             }
         }
 
+        // Метод хеширования пароля с использованием SHA256
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

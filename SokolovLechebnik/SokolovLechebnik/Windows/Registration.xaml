@@ -338,9 +338,9 @@
                                 <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
                             </Label.Effect>
                         </Label>
-                        <TextBox x:Name="TextBoxPass" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Margin="0,0,0,1" Foreground="Lime"  BorderThickness="1,1,10,1" GotFocus="TextBoxPass_GotFocus" LostFocus="TextBoxPass_LostFocus" TabIndex="5">
-                            <TextBox.Template>
-                                <ControlTemplate TargetType="{x:Type TextBox}">
+                        <PasswordBox x:Name="TextBoxPass" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Margin="0,0,0,1" Foreground="Lime"  BorderThickness="1,1,10,1" GotFocus="TextBoxPass_GotFocus" LostFocus="TextBoxPass_LostFocus" TabIndex="5">
+                            <PasswordBox.Template>
+                                <ControlTemplate TargetType="{x:Type PasswordBox}">
                                     <Border Background="{TemplateBinding Background}" 
                                             BorderBrush="{TemplateBinding BorderBrush}" 
                                             BorderThickness="{TemplateBinding BorderThickness}" 
@@ -348,22 +348,22 @@
                                         <ScrollViewer x:Name="PART_ContentHost"/>
                                     </Border>
                                 </ControlTemplate>
-                            </TextBox.Template>
-                            <TextBox.CaretBrush>
+                            </PasswordBox.Template>
+                            <PasswordBox.CaretBrush>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="Yellow" Offset="0.3"/>
                                     <GradientStop Color="Lime" Offset="0.7"/>
                                     <GradientStop Color="Lime" Offset="0.3"/>
                                     <GradientStop Color="Yellow" Offset="0.7"/>
                                 </LinearGradientBrush>
-                            </TextBox.CaretBrush>
-                            <TextBox.SelectionBrush>
+                            </PasswordBox.CaretBrush>
+                            <PasswordBox.SelectionBrush>
                                 <SolidColorBrush Color="Yellow" Opacity="0.8"/>
-                            </TextBox.SelectionBrush>
-                            <TextBox.SelectionTextBrush>
+                            </PasswordBox.SelectionBrush>
+                            <PasswordBox.SelectionTextBrush>
                                 <SolidColorBrush Color="#FF14FF00" Opacity="0.5"/>
-                            </TextBox.SelectionTextBrush>
-                            <TextBox.BorderBrush>
+                            </PasswordBox.SelectionTextBrush>
+                            <PasswordBox.BorderBrush>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <LinearGradientBrush.RelativeTransform>
                                         <TransformGroup>
@@ -376,8 +376,8 @@
                                     <GradientStop Color="#FFAFAFAF" Offset="0.9"/>
                                     <GradientStop Color="Lime" Offset="0.9"/>
                                 </LinearGradientBrush>
-                            </TextBox.BorderBrush>
-                        </TextBox>
+                            </PasswordBox.BorderBrush>
+                        </PasswordBox>
                     </Grid>
                     <Grid Grid.Row="6">
                         <Grid.ColumnDefinitions>
@@ -389,9 +389,9 @@
                                 <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
                             </Label.Effect>
                         </Label>
-                        <TextBox x:Name="TextBoxRetryPass" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Foreground="Lime"  BorderThickness="1,1,10,1" GotFocus="TextBoxRetryPass_GotFocus" LostFocus="TextBoxRetryPass_LostFocus" TabIndex="6">
-                            <TextBox.Template>
-                                <ControlTemplate TargetType="{x:Type TextBox}">
+                        <PasswordBox x:Name="TextBoxRetryPass" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Foreground="Lime"  BorderThickness="1,1,10,1" GotFocus="TextBoxRetryPass_GotFocus" LostFocus="TextBoxRetryPass_LostFocus" TabIndex="6">
+                            <PasswordBox.Template>
+                                <ControlTemplate TargetType="{x:Type PasswordBox}">
                                     <Border Background="{TemplateBinding Background}" 
                                             BorderBrush="{TemplateBinding BorderBrush}" 
                                             BorderThickness="{TemplateBinding BorderThickness}" 
@@ -399,22 +399,22 @@
                                         <ScrollViewer x:Name="PART_ContentHost"/>
                                     </Border>
                                 </ControlTemplate>
-                            </TextBox.Template>
-                            <TextBox.CaretBrush>
+                            </PasswordBox.Template>
+                            <PasswordBox.CaretBrush>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="Yellow" Offset="0.3"/>
                                     <GradientStop Color="Lime" Offset="0.7"/>
                                     <GradientStop Color="Lime" Offset="0.3"/>
                                     <GradientStop Color="Yellow" Offset="0.7"/>
                                 </LinearGradientBrush>
-                            </TextBox.CaretBrush>
-                            <TextBox.SelectionBrush>
+                            </PasswordBox.CaretBrush>
+                            <PasswordBox.SelectionBrush>
                                 <SolidColorBrush Color="Yellow" Opacity="0.8"/>
-                            </TextBox.SelectionBrush>
-                            <TextBox.SelectionTextBrush>
+                            </PasswordBox.SelectionBrush>
+                            <PasswordBox.SelectionTextBrush>
                                 <SolidColorBrush Color="#FF14FF00" Opacity="0.5"/>
-                            </TextBox.SelectionTextBrush>
-                            <TextBox.BorderBrush>
+                            </PasswordBox.SelectionTextBrush>
+                            <PasswordBox.BorderBrush>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <LinearGradientBrush.RelativeTransform>
                                         <TransformGroup>
@@ -427,8 +427,8 @@
                                     <GradientStop Color="#FFAFAFAF" Offset="0.9"/>
                                     <GradientStop Color="Lime" Offset="0.9"/>
                                 </LinearGradientBrush>
-                            </TextBox.BorderBrush>
-                        </TextBox>
+                            </PasswordBox.BorderBrush>
+                        </PasswordBox>
                     </Grid>
                     <Grid Grid.Row="8">
                         <Grid.ColumnDefinitions>
@@ -476,7 +476,7 @@
                             <TextBlock x:Name="TextBlockVoity" Text="ВОЙТИ" Cursor="Hand"></TextBlock>
                         </Button>
                     </Grid>
-                    <Button x:Name="ButtonReg"  Grid.Row="7" FontFamily="Arial" FontWeight="Bold" FontSize="24" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" TabIndex="7" >
+                    <Button x:Name="ButtonReg"  Grid.Row="7" FontFamily="Arial" FontWeight="Bold" FontSize="24" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" TabIndex="7" Click="ButtonReg_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="{TemplateBinding Background}" BorderThickness="20,5,20,5">
