@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 
 namespace SokolovLechebnik.Windows
 {
-    public partial class Catalog : Window
+    public partial class Orders : Window
     {
         private bool isLight = true;
         private bool isClick = true;
@@ -20,7 +20,7 @@ namespace SokolovLechebnik.Windows
         private string selectedColumn = "products_name";
         private bool sortAscending = true;
 
-        public Catalog()
+        public Orders()
         {
             InitializeComponent();
             LoadData(""); // Загружаем данные без фильтра
@@ -72,8 +72,8 @@ namespace SokolovLechebnik.Windows
         }
         private void ButtonMain_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Main>();
         private void ButtonProfile_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Profile>();
+        private void ButtonCatalog_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Catalog>();
         private void ButtonBasket_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Basket>();
-        private void ButtonDisease_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Catalog>();
         private void ButtonAbout_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<About>();
 
         private void LoadData(string searchTerm)

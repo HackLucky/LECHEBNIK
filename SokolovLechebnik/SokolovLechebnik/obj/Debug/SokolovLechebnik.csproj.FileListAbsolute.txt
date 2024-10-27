@@ -66,3 +66,5 @@ C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\D
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\SokolovLechebnik.csproj.CoreCompileInputs.cache
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\SokolovLechebnik.exe
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\SokolovLechebnik.pdb
+C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Orders.g.cs
+C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Orders.baml

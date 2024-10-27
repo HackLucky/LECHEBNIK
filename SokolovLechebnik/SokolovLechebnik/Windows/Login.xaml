@@ -423,50 +423,81 @@
                 </Button>
             </Grid>
         </Border>
-        <TextBox x:Name="TextBoxForAvatar" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="18" Background="#FF323232" Foreground="Lime" BorderThickness="10,3,10,3" Margin="10" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" TabIndex="12" ScrollViewer.CanContentScroll="True">
-            <TextBox.Template>
-                <ControlTemplate TargetType="TextBox">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
-                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
-                        <ScrollViewer x:Name="PART_ContentHost"/>
-                    </Border>
-                </ControlTemplate>
-            </TextBox.Template>
-            <TextBox.CaretBrush>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Yellow" Offset="0.3"/>
-                    <GradientStop Color="Lime" Offset="0.7"/>
-                    <GradientStop Color="Lime" Offset="0.3"/>
-                    <GradientStop Color="Yellow" Offset="0.7"/>
-                </LinearGradientBrush>
-            </TextBox.CaretBrush>
-            <TextBox.SelectionBrush>
-                <SolidColorBrush Color="Yellow" Opacity="0.8"/>
-            </TextBox.SelectionBrush>
-            <TextBox.SelectionTextBrush>
-                <SolidColorBrush Color="#FF14FF00" Opacity="0.5"/>
-            </TextBox.SelectionTextBrush>
-            <TextBox.BorderBrush>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <LinearGradientBrush.RelativeTransform>
-                        <TransformGroup>
-                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </LinearGradientBrush.RelativeTransform>
-                    <GradientStop Color="#FFAFAFAF" Offset="0.9"/>
-                    <GradientStop Color="Lime" Offset="0.9"/>
-                    <GradientStop Color="Lime" Offset="0.1"/>
-                    <GradientStop Color="#FFAFAFAF" Offset="0.1"/>
-                    <GradientStop Color="#FFAFAFAF" Offset="0.35"/>
-                    <GradientStop Color="Yellow" Offset="0.35"/>
-                    <GradientStop Color="Yellow" Offset="0.65"/>
-                    <GradientStop Color="#FFAFAFAF" Offset="0.65"/>
-                </LinearGradientBrush>
-            </TextBox.BorderBrush>
-        </TextBox>
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Margin="0,3,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.75*"/>
+                <ColumnDefinition Width="0.25*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="TextBoxForAvatar" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Foreground="Lime" BorderThickness="10,3,10,3" TabIndex="12" Margin="0,5,0,5">
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10,10,10,10">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+                <TextBox.CaretBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Yellow" Offset="0.3"/>
+                        <GradientStop Color="Lime" Offset="0.7"/>
+                        <GradientStop Color="Lime" Offset="0.3"/>
+                        <GradientStop Color="Yellow" Offset="0.7"/>
+                    </LinearGradientBrush>
+                </TextBox.CaretBrush>
+                <TextBox.SelectionBrush>
+                    <SolidColorBrush Color="Yellow" Opacity="0.8"/>
+                </TextBox.SelectionBrush>
+                <TextBox.SelectionTextBrush>
+                    <SolidColorBrush Color="#FF14FF00" Opacity="0.5"/>
+                </TextBox.SelectionTextBrush>
+                <TextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFAFAFAF" Offset="0.9"/>
+                        <GradientStop Color="Lime" Offset="0.9"/>
+                        <GradientStop Color="Lime" Offset="0.1"/>
+                        <GradientStop Color="#FFAFAFAF" Offset="0.1"/>
+                        <GradientStop Color="#FFAFAFAF" Offset="0.35"/>
+                        <GradientStop Color="Yellow" Offset="0.35"/>
+                        <GradientStop Color="Yellow" Offset="0.65"/>
+                        <GradientStop Color="#FFAFAFAF" Offset="0.65"/>
+                    </LinearGradientBrush>
+                </TextBox.BorderBrush>
+            </TextBox>
+            <Button x:Name="ButtonSearch" Content="СКАЗАТЬ" Grid.Column="1" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontWeight="Bold" FontSize="16">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="20,5">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="Yellow" Offset="0.25"/>
+                                    <GradientStop Color="#00AFAFAF" Offset="0.25"/>
+                                    <GradientStop Color="#00AFAFAF" Offset="0.75"/>
+                                    <GradientStop Color="Yellow" Offset="0.75"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*"/>

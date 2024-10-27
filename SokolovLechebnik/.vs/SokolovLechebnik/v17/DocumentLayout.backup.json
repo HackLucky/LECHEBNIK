@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\catalog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\catalog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\sokolovlechebnik\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\catalog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\catalog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\diseasebook.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\diseasebook.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\catalog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\catalog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\diseasebook.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\diseasebook.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\registration.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\registration.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\sokolovlechebnik\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,28 +42,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DiseaseBook.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\DiseaseBook.xaml.cs",
-              "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\DiseaseBook.xaml.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\DiseaseBook.xaml.cs",
-              "RelativeToolTip": "SokolovLechebnik\\Windows\\DiseaseBook.xaml.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAAAHUAAAB8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T20:15:29.119Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Catalog.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Catalog.xaml.cs",
-              "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Catalog.xaml.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Catalog.xaml.cs",
-              "RelativeToolTip": "SokolovLechebnik\\Windows\\Catalog.xaml.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAAAKkAAADuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T19:45:16.16Z",
+              "DocumentIndex": 4,
+              "Title": "Login.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Login.xaml",
+              "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Login.xaml",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Login.xaml",
+              "RelativeToolTip": "SokolovLechebnik\\Windows\\Login.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-10-27T20:58:18.224Z",
               "EditorCaption": ""
             },
             {
@@ -75,24 +61,37 @@
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Catalog.xaml",
               "RelativeToolTip": "SokolovLechebnik\\Windows\\Catalog.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-10-27T19:43:51.773Z",
+              "WhenOpened": "2024-10-27T20:55:44.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Catalog.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Catalog.xaml.cs",
+              "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Catalog.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Catalog.xaml.cs",
+              "RelativeToolTip": "SokolovLechebnik\\Windows\\Catalog.xaml.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAEsAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-27T20:55:42.945Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "DiseaseBook.xaml",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\DiseaseBook.xaml",
-              "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\DiseaseBook.xaml",
-              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\DiseaseBook.xaml",
-              "RelativeToolTip": "SokolovLechebnik\\Windows\\DiseaseBook.xaml",
+              "Title": "Registration.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Registration.xaml",
+              "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Registration.xaml",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Registration.xaml",
+              "RelativeToolTip": "SokolovLechebnik\\Windows\\Registration.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-10-27T17:32:30.011Z",
+              "WhenOpened": "2024-10-27T20:55:28.418Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\App.xaml",
               "RelativeDocumentMoniker": "SokolovLechebnik\\App.xaml",
