@@ -194,10 +194,11 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <ComboBox x:Name="comboBoxColumns" Grid.Column="0" SelectionChanged="ComboBoxColumns_SelectionChanged" Foreground="Black" Cursor="Hand" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="-2,0,0,0" FontFamily="Arial" FontSize="14" Background="#FF969696"/>
-                        <CheckBox x:Name="checkBoxAscending" Content="По возрастанию" IsChecked="True" Grid.ColumnSpan="3" Margin="151,0,151,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Background="Yellow"/>
-                        <Button Content="Сортировать по" Grid.Column="2" Click="SortButton_Click" FontFamily="Arial" FontWeight="Bold" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand">
+                        <ComboBox x:Name="comboBoxColumns" Grid.Column="0" SelectionChanged="ComboBoxColumns_SelectionChanged" Foreground="Black" Cursor="Hand" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0,0,0,0" FontFamily="Arial" FontSize="14" Background="#FF646464"/>
+                        <CheckBox x:Name="checkBoxAscending" Content="По возрастанию" IsChecked="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Background="Yellow" Grid.Column="1" Padding="0,0,0,0" FontFamily="Arial"/>
+                        <Button Content="СОРТИРОВАТЬ" Grid.Column="2" Click="SortButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="9" FontWeight="Bold">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border Background="{TemplateBinding Background}" BorderThickness="20,5">

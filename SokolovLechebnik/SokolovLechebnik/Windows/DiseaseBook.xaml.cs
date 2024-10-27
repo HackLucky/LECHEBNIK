@@ -14,13 +14,13 @@ namespace SokolovLechebnik.Windows
     {
         private bool isLight = true;
         private bool isClick = true;
-        private string selectedColumn = "diseases_name"; // Колонка по умолчанию для сортировки
-        private bool sortAscending = true; // Порядок сортировки (по возрастанию)
+        private string selectedColumn = "diseases_name";
+        private bool sortAscending = true;
         public DiseaseBook()
         {
             InitializeComponent();
-            LoadData(); // Загрузка данных при запуске окна
-            SetupComboBox(); // Настройка ComboBox для выбора колонок
+            LoadData();
+            SetupComboBox();
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e) => Close();
         private void MainButton_Click(object sender, RoutedEventArgs e)
@@ -31,8 +31,8 @@ namespace SokolovLechebnik.Windows
         }
         private void ButtonOnOff_Click(object sender, RoutedEventArgs e)
         {
-            ToggleTheme(isLight);
-            ToggleButtonImage(ButtonOnOff, isLight ? "pack://application:,,,/Resources/dark_mode.png" : "pack://application:,,,/Resources/light_mode.png");
+            ToggleTheme(!isLight);
+            ToggleButtonImage(ButtonOnOff, isLight ? "pack://application:,,,/Resources/light_mode.png" : "pack://application:,,,/Resources/dark_mode.png");
             isLight = !isLight;
         }
         private void ToggleTheme(bool isLightTheme)
@@ -57,7 +57,6 @@ namespace SokolovLechebnik.Windows
         private void ButtonCatalog_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Catalog>();
         private void ButtonBasket_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Basket>();
         private void ButtonAbout_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<About>();
-
         private void LoadData()
         {
             string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
@@ -67,12 +66,9 @@ namespace SokolovLechebnik.Windows
             {
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
                 DataTable dataTable = new DataTable();
-
                 try
                 {
                     dataAdapter.Fill(dataTable);
-
-                    // Переименование колонок
                     dataTable.Columns["diseases_name"].ColumnName = "Название болезни";
                     dataTable.Columns["symptoms"].ColumnName = "Симптомы";
                     dataTable.Columns["cure"].ColumnName = "Лечение";
@@ -93,15 +89,11 @@ namespace SokolovLechebnik.Windows
         };
         private void SetupComboBox()
         {
-            // Заполнение ComboBox русскоязычными названиями колонок
             comboBoxColumns.Items.Add("Название болезни");
             comboBoxColumns.Items.Add("Симптомы");
             comboBoxColumns.Items.Add("Лечение");
-
-            // Установка колонки по умолчанию
             comboBoxColumns.SelectedItem = "Название болезни";
         }
-
         private void ComboBoxColumns_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (comboBoxColumns.SelectedItem != null)
@@ -109,13 +101,11 @@ namespace SokolovLechebnik.Windows
                 selectedColumn = comboBoxColumns.SelectedItem.ToString();
             }
         }
-
         private void SortButton_Click(object sender, RoutedEventArgs e)
         {
             sortAscending = checkBoxAscending.IsChecked == true;
             SortData();
         }
-
         private void SortData()
         {
             ICollectionView dataView = CollectionViewSource.GetDefaultView(dataGrid.ItemsSource);

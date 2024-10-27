@@ -69,39 +69,42 @@ namespace SokolovLechebnik.Windows
         }
         private bool AuthenticateUser(string email, string password)
         {
+            SqlConnection connection = null;
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                string query = "SELECT password FROM Users WHERE mail = @mail";
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    connection.Open();
-                    string query = "SELECT password FROM Users WHERE mail = @mail";
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    command.Parameters.AddWithValue("@mail", email);
+                    var storedPasswordHash = command.ExecuteScalar() as string;
+                    if (string.IsNullOrEmpty(storedPasswordHash))
                     {
-                        command.Parameters.AddWithValue("@mail", email);
-                        var storedPasswordHash = command.ExecuteScalar() as string;
-
-                        if (string.IsNullOrEmpty(storedPasswordHash))
-                        {
-                            return false;
-                        }
-
-                        string passwordHash = HashPassword(password);
-                        return storedPasswordHash == passwordHash;
+                        return false;
                     }
+                    string passwordHash = HashPassword(password);
+                    return storedPasswordHash == passwordHash;
                 }
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Ошибка подключения к базе данных: {ex.Message}");
+                MessageBox.Show($"Ошибка подключения к базе данных: {ex.Message}");
                 return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Неизвестная ошибка: {ex.Message}");
+                MessageBox.Show($"Неизвестная ошибка: {ex.Message}");
                 return false;
             }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
         }
-
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

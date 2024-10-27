@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
 namespace SokolovLechebnik.Windows
 {
     public partial class Registration : Window
@@ -15,25 +14,21 @@ namespace SokolovLechebnik.Windows
         private bool isLight = true;
         private readonly string initialText = "Приветствую!\nМеня зовут Леча!\nДавайте авторизируем Вас, чтобы дальше пользоваться программой!\nЯ помогу Вам войти в учётную запись!\n\nВы можете поговорить со мной через текстовое поле снизу, задав мне вопросы:\nкто ты? как дела? что делаешь? напишешь факт?\n\nВы всегда сможете вернуться к этому сообщению, тыкнув на меня;)";
         private readonly string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
-
         public Registration()
         {
             InitializeComponent();
             TextBlockAvatar.Text = initialText;
         }
-
         private void ButtonVoity_Click(object sender, RoutedEventArgs e)
         {
             var myForm = new Login();
             myForm.Show();
             this.Close();
         }
-
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
         private void ButtonOnOff_Click(object sender, RoutedEventArgs e)
         {
             GridMain.Background = isLight ? new SolidColorBrush(Color.FromRgb(25, 25, 25)) : new SolidColorBrush(Color.FromRgb(175, 175, 175));
@@ -43,84 +38,68 @@ namespace SokolovLechebnik.Windows
             };
             isLight = !isLight;
         }
-
         private void TextBoxFamilia_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = "Подсказка: в это текстовое поле нужно ввести Вашу прекрасную фамилию;)";
         }
-
         private void TextBoxFamilia_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = initialText;
         }
-
         private void TextBoxName_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = "Подсказка: в это текстовое поле нужно ввести Ваше прекрасное имя;)";
         }
-
         private void TextBoxName_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = initialText;
         }
-
         private void TextBoxOtchestvo_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = "Подсказка: в это текстовое поле нужно ввести Ваше прекрасное отчество;) Если его нет, то поставьте пробел";
         }
-
         private void TextBoxOtchestvo_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = initialText;
         }
-
         private void TextBoxTelephone_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = "Подсказка: в это текстовое поле нужно ввести Ваш номер телефона. Он нужен для верификации и возможности связи. Конечно, хочется услышать Ваш голос, но я всегда на службе здесь и, увы, не имею такой возможности;)";
         }
-
         private void TextBoxTelephone_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = initialText;
         }
-
         private void TextBoxMail_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = "Подсказка: в это текстовое поле нужно ввести Вашу почту. Она нужна для восстановления пароля и рассылки об обновлении статуса заказа. Я могу писать Вам, но к сожалению времени у меня не так много:(";
         }
-
         private void TextBoxMail_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = initialText;
         }
-
         private void TextBoxPass_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = "Подсказка: в это текстовое поле нужно ввести придуманный Вами пароль для входа в личный кабинет. Не стоит волноваться, пароли я, конечно, запоминаю, но не использую где-либо за пределами моего дома - программы...";
         }
-
         private void TextBoxPass_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = initialText;
         }
-
         private void TextBoxRetryPass_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = "Подсказка: в это текстовое поле нужно ввести Ваш придуманный ранее пароль повторно для проверки правильности его написания и запоминания его Вами. Конечно, Вы можете восстановить доступ позже;)";
         }
-
         private void TextBoxRetryPass_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = initialText;
         }
-
         private async void ButtonReg_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidateInput())
             {
                 return;
             }
-
             string secondName = TextBoxFamilia.Text.Trim();
             string firstName = TextBoxName.Text.Trim();
             string patronymic = TextBoxOtchestvo.Text.Trim();
@@ -128,7 +107,6 @@ namespace SokolovLechebnik.Windows
             string mail = TextBoxMail.Text.Trim();
             string password = TextBoxPass.Password;
             string recoveryCode = GenerateRecoveryCode();
-
             try
             {
                 if (await UserExistsAsync(phoneNumber, mail))
@@ -137,7 +115,6 @@ namespace SokolovLechebnik.Windows
                     return;
                 }
                 await InsertUserToDatabaseAsync(secondName, firstName, patronymic, phoneNumber, mail, password, recoveryCode);
-
                 var myForm = new Main();
                 myForm.Show();
                 this.Close();
@@ -151,39 +128,30 @@ namespace SokolovLechebnik.Windows
                 MessageBox.Show($"Ошибка при регистрации: {ex.Message}");
             }
         }
-
         private bool ValidateInput()
         {
-            if (string.IsNullOrWhiteSpace(TextBoxFamilia.Text) || string.IsNullOrWhiteSpace(TextBoxName.Text) ||
-                string.IsNullOrWhiteSpace(TextBoxTelephone.Text) || string.IsNullOrWhiteSpace(TextBoxMail.Text) ||
-                string.IsNullOrWhiteSpace(TextBoxPass.Password))
+            if (string.IsNullOrWhiteSpace(TextBoxFamilia.Text) || string.IsNullOrWhiteSpace(TextBoxName.Text) || string.IsNullOrWhiteSpace(TextBoxTelephone.Text) || string.IsNullOrWhiteSpace(TextBoxMail.Text) || string.IsNullOrWhiteSpace(TextBoxPass.Password))
             {
                 MessageBox.Show("Пожалуйста, заполните все обязательные поля корректно.");
                 return false;
             }
-
             if (TextBoxPass.Password.Length < 8)
             {
                 MessageBox.Show("Пароль должен содержать не менее 8 символов.");
                 return false;
             }
-
             if (!Regex.IsMatch(TextBoxMail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 MessageBox.Show("Неправильный формат электронной почты.");
                 return false;
             }
-
-            // Обновленная проверка номера телефона
             if (!Regex.IsMatch(TextBoxTelephone.Text, @"^(\+7|8)\d{10}$"))
             {
                 MessageBox.Show("Неправильный формат номера телефона. Введите номер, начинающийся с +7 или 8, затем 10 цифр.");
                 return false;
             }
-
             return true;
         }
-
         private static string GenerateRecoveryCode()
         {
             using (var rng = new RNGCryptoServiceProvider())
@@ -194,7 +162,6 @@ namespace SokolovLechebnik.Windows
                 return code.ToString("D6");
             }
         }
-
         private async Task<bool> UserExistsAsync(string phoneNumber, string mail)
         {
             try
@@ -207,7 +174,6 @@ namespace SokolovLechebnik.Windows
                     {
                         command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
                         command.Parameters.AddWithValue("@mail", mail);
-
                         int userCount = (int)await command.ExecuteScalarAsync();
                         return userCount > 0;
                     }
@@ -224,9 +190,7 @@ namespace SokolovLechebnik.Windows
                 return false;
             }
         }
-
-        private async Task InsertUserToDatabaseAsync(string secondName, string firstName, string patronymic,
-                                                     string phoneNumber, string mail, string password, string recoveryCode)
+        private async Task InsertUserToDatabaseAsync(string secondName, string firstName, string patronymic, string phoneNumber, string mail, string password, string recoveryCode)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -255,20 +219,24 @@ namespace SokolovLechebnik.Windows
                         transaction.Rollback();
                         MessageBox.Show($"Ошибка при добавлении пользователя: {ex.Message}");
                     }
+                    finally
+                    {
+                        transaction.Dispose();
+                        connection.Close();
+                    }
                 }
                 catch (SqlException ex)
                 {
                     MessageBox.Show("Ошибка при записи в базу данных. Сервер базы данных недоступен.");
-                    throw new Exception("Ошибка подключения к серверу базы данных.");
+                    throw new Exception("Ошибка подключения к серверу базы данных.", ex);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Неизвестная ошибка: {ex.Message}");
+                    MessageBox.Show($"Неизвестная ошибка: {ex.Message}");
                     throw;
                 }
             }
         }
-
         private static string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

@@ -22,8 +22,8 @@ namespace SokolovLechebnik.Windows
         }
         private void ButtonOnOff_Click(object sender, RoutedEventArgs e)
         {
-            ToggleTheme(isLight);
-            ToggleButtonImage(ButtonOnOff, isLight ? "pack://application:,,,/Resources/dark_mode.png" : "pack://application:,,,/Resources/light_mode.png");
+            ToggleTheme(!isLight);
+            ToggleButtonImage(ButtonOnOff, isLight ? "pack://application:,,,/Resources/light_mode.png" : "pack://application:,,,/Resources/dark_mode.png");
             isLight = !isLight;
         }
         private void ToggleTheme(bool isLightTheme)
