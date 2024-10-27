@@ -140,7 +140,7 @@
                     </LinearGradientBrush>
                 </TextBox.BorderBrush>
             </TextBox>
-            <Button x:Name="ButtonExit" FontFamily="Arial" FontWeight="Bold" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" Grid.Column="0" Grid.Row="1" FontSize="24" Margin="13,0,13,0" BorderBrush="{x:Null}" Click="ButtonExit_Click" Cursor="Hand" TabIndex="9" >
+            <Button x:Name="ButtonExit" FontFamily="Arial" FontWeight="Bold" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" Grid.Column="0" Grid.Row="1" FontSize="24" BorderBrush="{x:Null}" Click="ButtonExit_Click" Cursor="Hand" TabIndex="9" Margin="0,3,0,0" >
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border Background="{TemplateBinding Background}" BorderThickness="20,5,20,5">

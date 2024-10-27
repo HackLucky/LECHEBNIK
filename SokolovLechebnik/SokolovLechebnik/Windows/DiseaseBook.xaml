@@ -52,11 +52,11 @@
                         </Style>
                     </Border.Style>
                 </Border>
-                <Button x:Name="ButtonMenu" Click="MainButton_Click" Padding="0,0,0,0" HorizontalContentAlignment="Stretch" BorderBrush="#FF323232" Foreground="{x:Null}">
+                <Button x:Name="ButtonMenu" Click="MainButton_Click" Padding="0,0,0,0" HorizontalContentAlignment="Stretch" BorderBrush="#FF323232" Foreground="{x:Null}" Cursor="Hand">
                     <Button.Background>
                         <ImageBrush Stretch="Uniform" ImageSource="/Resources/LechebnikLogoMain.png"/>
                     </Button.Background>
-                    <Popup x:Name="MenuPopup" PlacementTarget="{Binding ElementName=MainButton}" Width="96" StaysOpen="true" Grid.RowSpan="2" Placement="Relative" HorizontalOffset="95" VerticalOffset="52.404">
+                    <Popup x:Name="MenuPopup" PlacementTarget="{Binding ElementName=MainButton}" Width="96" StaysOpen="true" Grid.RowSpan="2" Placement="Relative" HorizontalOffset="95" VerticalOffset="52.404" Cursor="Hand">
                         <Border BorderBrush="#FF323232" BorderThickness="1" Background="#FF646464">
                             <StackPanel>
                                 <Button Content="Главная" Margin="5" Click="ButtonMain_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
@@ -180,7 +180,7 @@
                     <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
                 </Border.Effect>
             </Border>
-            <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Margin="10,10,10,10" Background="#FF646464">
+            <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Margin="10,10,10,10" Background="#FF646464" Cursor="Hand">
                 <Border.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
                 </Border.Effect>
@@ -193,8 +193,37 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="ButtonSort" FontFamily="Arial" FontWeight="Bold" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" Grid.Column="0" FontSize="14" BorderBrush="{x:Null}" Click="ButtonExit_Click" Cursor="Hand" TabIndex="9" >
+                        <ComboBox x:Name="comboBoxColumns" Grid.Column="0" SelectionChanged="ComboBoxColumns_SelectionChanged" Foreground="Black" Cursor="Hand" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="-2,0,0,0" FontFamily="Arial" FontSize="14" Background="#FF969696"/>
+                        <CheckBox x:Name="checkBoxAscending" Content="По возрастанию" IsChecked="True" Grid.ColumnSpan="3" Margin="151,0,151,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Background="Yellow"/>
+                        <Button Content="Сортировать по" Grid.Column="2" Click="SortButton_Click" FontFamily="Arial" FontWeight="Bold" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderThickness="20,5">
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="Yellow" Offset="0.25"/>
+                                                <GradientStop Color="#00AFAFAF" Offset="0.25"/>
+                                                <GradientStop Color="#00AFAFAF" Offset="0.75"/>
+                                                <GradientStop Color="Yellow" Offset="0.75"/>
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <!--   <Button x:Name="ButtonSort" FontFamily="Arial" FontWeight="Bold" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" Grid.Column="0" FontSize="14" BorderBrush="{x:Null}" Click="ButtonExit_Click" Cursor="Hand" TabIndex="9" >
                             <Button.Template>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}" BorderThickness="20,5,20,5">
@@ -263,10 +292,10 @@
                                 </Style>
                             </Button.Style>
                             <TextBlock x:Name="TextBlockAdd" Text="ДОБАВИТЬ В КОРЗИНУ" Cursor="Hand"/>
-                        </Button>
+                        </Button>   -->
 
                     </Grid>
-                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=20}" Background="#FF646464" BorderBrush="Black" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"/>
+                    <DataGrid x:Name="dataGrid" Background="#FF646464" BorderBrush="Black" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" AutoGenerateColumns="True" IsReadOnly="True"/>
                 </Grid>
             </Border>
             <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Grid.Column="1" Grid.Row="0">
