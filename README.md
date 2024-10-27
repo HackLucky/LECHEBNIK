@@ -45,6 +45,8 @@
 
 4. Папка SokolovLechebnik должна быть распакована в корневом каталоге решений Visual Studio. По умолчанию: C:/Users/[Name_of_user]/source/repos/
 
+5. Файл ofont.ru_Arkhip, находящийся в папке Fonts, должен быть распакован в папку Fonts по пути: C:\Users\[Имя_пользователя]\AppData\Local\Microsoft\Windows\Fonts
+
 Варивнт №2
 1. Клонируйте репозиторий:
    ```bash
