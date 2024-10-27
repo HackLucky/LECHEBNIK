@@ -5,8 +5,215 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SokolovLechebnik.Windows"
         mc:Ignorable="d"
-        Title="About" Height="450" Width="800">
-    <Grid>
-        
+        Title="ЛЕЧЕБНИК [О ПРОГРАММЕ]" Height="540" Width="960" MinWidth="960" MinHeight="540" Background="{x:Null}" Icon="/Resources/favicon.ico" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="GridMain" Background="#FFAFAFAF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.9*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid Background="#FF646464">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0,050*"/>
+                    <ColumnDefinition Width="0,300*"/>
+                    <ColumnDefinition Width="0,300*"/>
+                    <ColumnDefinition Width="0,300*"/>
+                    <ColumnDefinition Width="0,050*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="ButtonMenu" Click="MainButton_Click" Padding="0,0,0,0" HorizontalContentAlignment="Stretch" BorderBrush="#FF323232" Foreground="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush Stretch="Uniform" ImageSource="/Resources/LechebnikLogoMain.png"/>
+                    </Button.Background>
+                    <Popup Name="MenuPopup" PlacementTarget="{Binding ElementName=MainButton}" Width="96" StaysOpen="true" Grid.RowSpan="2" Placement="Relative" HorizontalOffset="95" VerticalOffset="52.404">
+                        <Border BorderBrush="#FF323232" BorderThickness="1" Background="#FF646464">
+                            <StackPanel>
+                                <Button Content="Главная" Margin="5" Click="ButtonMain_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
+                                <Button Content="Профиль" Margin="5" Click="ButtonProfile_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
+                                <Button Content="Каталог" Margin="5" Click="ButtonCatalog_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
+                                <Button Content="Корзина" Margin="5" Click="ButtonBasket_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
+                                <Button Content="Болезни" Margin="5" Click="ButtonDisease_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                    </Popup>
+                </Button>
+                <Label x:Name="LabelMainReg" Grid.Column="2" Content="О ПРОГРАММЕ" FontFamily="Arial" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Lime" FontWeight="UltraBlack" Padding="0,0,0,0" Background="{x:Null}" BorderBrush="Lime" Margin="10,0,10,0">
+                    <Label.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="1"/>
+                    </Label.Effect>
+                </Label>
+                <Border x:Name="BorderLabelMainReg" BorderThickness="15,3,15,3" Margin="10,0,10,0" Grid.Column="2">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <LinearGradientBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                    <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                    <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop Color="Yellow" Offset="0.15"/>
+                            <GradientStop Color="#00AFAFAF" Offset="0.15"/>
+                            <GradientStop Color="#00AFAFAF" Offset="0.85"/>
+                            <GradientStop Color="Yellow" Offset="0.85"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Button x:Name="ButtonOnOff" Grid.Column="4" BorderBrush="#FF646464" Foreground="{x:Null}" Click="ButtonOnOff_Click" Cursor="Hand" TabIndex="10">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Resources/dark_mode.png" Stretch="Uniform"/>
+                    </Button.Background>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="Lime" BlurRadius="5" ShadowDepth="0" Opacity="1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="TextBoxForAvatar" VerticalContentAlignment="Center" FontFamily="Arial" ScrollViewer.CanContentScroll="True" FontSize="18" Background="#FF323232" Foreground="Lime" BorderThickness="10,3,10,3" Margin="10,10,10,10" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" TabIndex="12">
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border Background="{TemplateBinding Background}" 
+                BorderBrush="{TemplateBinding BorderBrush}" 
+                BorderThickness="{TemplateBinding BorderThickness}" 
+                CornerRadius="10,10,10,10">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+                <TextBox.CaretBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Yellow" Offset="0.3"/>
+                        <GradientStop Color="Lime" Offset="0.7"/>
+                        <GradientStop Color="Lime" Offset="0.3"/>
+                        <GradientStop Color="Yellow" Offset="0.7"/>
+                    </LinearGradientBrush>
+                </TextBox.CaretBrush>
+                <TextBox.SelectionBrush>
+                    <SolidColorBrush Color="Yellow" Opacity="0.8"/>
+                </TextBox.SelectionBrush>
+                <TextBox.SelectionTextBrush>
+                    <SolidColorBrush Color="#FF14FF00" Opacity="0.5"/>
+                </TextBox.SelectionTextBrush>
+                <TextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFAFAFAF" Offset="0.9"/>
+                        <GradientStop Color="Lime" Offset="0.9"/>
+                        <GradientStop Color="Lime" Offset="0.1"/>
+                        <GradientStop Color="#FFAFAFAF" Offset="0.1"/>
+                        <GradientStop Color="#FFAFAFAF" Offset="0.35"/>
+                        <GradientStop Color="Yellow" Offset="0.35"/>
+                        <GradientStop Color="Yellow" Offset="0.65"/>
+                        <GradientStop Color="#FFAFAFAF" Offset="0.65"/>
+                    </LinearGradientBrush>
+                </TextBox.BorderBrush>
+            </TextBox>
+            <Button x:Name="ButtonExit" FontFamily="Arial" FontWeight="Bold" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" Grid.Column="0" Grid.Row="1" FontSize="24" Margin="13,0,13,0" BorderBrush="{x:Null}" Click="ButtonExit_Click" Cursor="Hand" TabIndex="9" >
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="20,5,20,5">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <LinearGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                            <RotateTransform Angle="-45" CenterX="0.5" CenterY="0.5"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </LinearGradientBrush.RelativeTransform>
+                                    <GradientStop Color="Yellow" Offset="0.25"/>
+                                    <GradientStop Color="#00AFAFAF" Offset="0.25"/>
+                                    <GradientStop Color="#00AFAFAF" Offset="0.75"/>
+                                    <GradientStop Color="Yellow" Offset="0.75"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"></DropShadowEffect>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <TextBlock x:Name="TextBlockExit" Text="ВЫЙТИ ИЗ ПРОГРАММЫ" Cursor="Hand"></TextBlock>
+            </Button>
+            <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
+                </Border.Effect>
+            </Border>
+            <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Margin="10,10,10,10" Background="#FF646464">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
+                </Border.Effect>
+                <TextBlock x:Name="TextBlockMain" Text=" " FontFamily="Arial" FontSize="14" TextWrapping="Wrap" Foreground="Lime" Margin="5,5,5,5"/>
+            </Border>
+            <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Grid.Column="1" Grid.Row="0">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
+                </Border.Effect>
+            </Border>
+            <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Grid.Column="1" Grid.Row="0" Margin="10,10,10,10" Background="#FF646464">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
+                </Border.Effect>
+                <TextBlock x:Name="TextBlockAvatar" Text=" " FontFamily="Arial" FontSize="14" TextWrapping="Wrap" Foreground="Lime" Margin="5,5,5,5"/>
+            </Border>
+            <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Grid.Column="2" Grid.Row="0">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
+                </Border.Effect>
+            </Border>
+            <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Grid.Column="2" Grid.Row="0" Margin="10,10,10,10">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
+                </Border.Effect>
+                <Grid>
+                    <Button x:Name="ButtonImageAvatar" BorderBrush="{x:Null}" Cursor="Hand" TabIndex="11">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Resources/AvatarLecha.png" Stretch="UniformToFill"/>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Window>
