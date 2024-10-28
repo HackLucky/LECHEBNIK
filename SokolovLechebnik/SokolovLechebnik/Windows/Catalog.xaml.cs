@@ -94,7 +94,7 @@ namespace SokolovLechebnik.Windows
                 FROM 
                     Products p
                 LEFT JOIN 
-                    Diseases_book d ON p.id_reason = d.id_disease
+                    Diseases_book d ON p.id_disease = d.id_disease
                 LEFT JOIN 
                     Taking_types t ON p.id_taking = t.id_taking
                 LEFT JOIN 
