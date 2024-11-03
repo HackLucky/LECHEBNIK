@@ -12,74 +12,101 @@ using System.Windows.Media.Imaging;
 
 namespace SokolovLechebnik.Windows
 {
+    // Класс Catalog представляет собой окно WPF, которое отображает каталог товаров.
     public partial class Catalog : Window
     {
+        // Переменная для отслеживания текущего состояния темы (true - светлая, false - темная).
         private bool isLight = true;
+
+        // Переменная для отслеживания состояния кнопки меню (true, если кликнута, false в противном случае).
         private bool isClick = true;
-        private readonly string initialText = "Вы находитесь в каталоге продуктов, где можно посмотреть...\nТакже здесь указаны болезни и их симптомы...\n";
+
+        // Начальный текст приветствия для аватара, отображающий подсказку по использованию каталога.
+        private readonly string initialText = "Вы находитесь в каталоге препаратов, где можно посмотреть товары;)\nУ каждого товара имеется назначение при определённой болезни, симптомах, тип приема, тип препарата, тип агрегатного состояния и стоимость)\nЕсли хотите найти конкретный препарат по названию, симптому, цене и так далее, то введите в текстовое поле подо мной;)";
+
+        // Выбранный столбец для сортировки данных в DataGrid.
         private string selectedColumn = "products_name";
+
+        // Переменная для отслеживания порядка сортировки (true - по возрастанию, false - по убыванию).
         private bool sortAscending = true;
 
+        // Конструктор для инициализации окна, загрузки данных, настройки ComboBox и добавления обработчиков событий.
         public Catalog()
         {
-            InitializeComponent();
-            LoadData(""); // Загружаем данные без фильтра
-            SetupComboBox();
-            TextBlockAvatar.Text = initialText;
-            TextBoxForAvatar.KeyDown += TextBoxForAvatar_KeyDown;
+            InitializeComponent(); // Инициализирует все UI-компоненты.
+            LoadData(""); // Загружает данные без фильтрации.
+            SetupComboBox(); // Настраивает элементы ComboBox для выбора столбца.
+            TextBlockAvatar.Text = initialText; // Устанавливает начальный текст для TextBlock аватара.
+            TextBoxForAvatar.KeyDown += TextBoxForAvatar_KeyDown; // Добавляет обработчик события для ввода текста.
         }
 
+        // Обработчик события для кнопки выхода, закрывающий текущее окно.
         private void ButtonExit_Click(object sender, RoutedEventArgs e) => Close();
+
+        // Обработчик события для кнопки главного меню, открывающий и закрывающий всплывающее меню.
         private void MainButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuPopup.IsOpen = !MenuPopup.IsOpen;
-            ToggleButtonImage(ButtonMenu, isClick ? "pack://application:,,,/Resources/LechebnikLogoMainX.png" : "pack://application:,,,/Resources/LechebnikLogoMain.png");
-            isClick = !isClick;
+            MenuPopup.IsOpen = !MenuPopup.IsOpen; // Переключает состояние отображения всплывающего меню.
+            ToggleButtonImage(ButtonMenu, isClick ? "pack://application:,,,/Resources/LechebnikLogoMainX.png" : "pack://application:,,,/Resources/LechebnikLogoMain.png"); // Переключает изображение кнопки меню.
+            isClick = !isClick; // Изменяет состояние клика.
         }
 
+        // Обработчик события для кнопки переключения темы (светлая/темная).
         private void ButtonOnOff_Click(object sender, RoutedEventArgs e)
         {
-            ToggleTheme(!isLight);
-            ToggleButtonImage(ButtonOnOff, isLight ? "pack://application:,,,/Resources/light_mode.png" : "pack://application:,,,/Resources/dark_mode.png");
-            isLight = !isLight;
+            ToggleTheme(!isLight); // Переключает тему.
+            ToggleButtonImage(ButtonOnOff, isLight ? "pack://application:,,,/Resources/light_mode.png" : "pack://application:,,,/Resources/dark_mode.png"); // Переключает изображение кнопки для текущей темы.
+            isLight = !isLight; // Изменяет состояние темы.
         }
 
+        // Метод переключения темы, изменяющий цвет фона главной сетки.
         private void ToggleTheme(bool isLightTheme)
         {
-            GridMain.Background = new SolidColorBrush(Color.FromRgb(isLightTheme ? (byte)175 : (byte)25, isLightTheme ? (byte)175 : (byte)25, isLightTheme ? (byte)175 : (byte)25));
+            GridMain.Background = new SolidColorBrush(Color.FromRgb(isLightTheme ? (byte)175 : (byte)25, isLightTheme ? (byte)175 : (byte)25, isLightTheme ? (byte)175 : (byte)25)); // Устанавливает цвет фона.
         }
 
+        // Метод для изменения изображения кнопки, используя указанный URI изображения.
         private void ToggleButtonImage(Button button, string imageUri)
         {
             button.Background = new ImageBrush
             {
-                ImageSource = new BitmapImage(new Uri(imageUri)),
-                Stretch = Stretch.Uniform
+                ImageSource = new BitmapImage(new Uri(imageUri)), // Загружает изображение из указанного URI.
+                Stretch = Stretch.Uniform // Растягивает изображение, сохраняя пропорции.
             };
         }
+
+        // Обработчик события для фокуса на TextBox, отображающий подсказку в TextBlock аватара.
         private void TextBoxForAvatar_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = "Подсказка: в это текстовое поле можете ввести название болезни или симптом или способ лечения;)\n\nВведя в поле ваш запрос, нажмите клавишу [Enter] или кнопку СКАЗАТЬ рядом с текстовым полем)";
         }
+
+        // Обработчик события для потери фокуса TextBox, восстанавливающий начальный текст в TextBlock аватара.
         private void TextBoxForAvatar_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = initialText;
         }
+
+        // Метод для открытия нового окна и закрытия текущего, параметризованный типом окна.
         private void OpenWindowAndCloseCurrent<T>() where T : Window, new()
         {
-            new T().Show();
-            Close();
+            new T().Show(); // Открывает новое окно указанного типа.
+            Close(); // Закрывает текущее окно.
         }
+
+        // Обработчики для кнопок, открывающие соответствующие окна.
         private void ButtonMain_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Main>();
         private void ButtonProfile_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Profile>();
         private void ButtonBasket_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Basket>();
         private void ButtonDisease_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Catalog>();
         private void ButtonAbout_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<About>();
 
+        // Метод загрузки данных из базы с использованием переданного поискового запроса.
         private void LoadData(string searchTerm)
         {
-            string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
-            // Запрос с объединениями таблиц
+            string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;"; // Строка подключения к базе данных.
+
+            // SQL-запрос с объединением таблиц для извлечения информации о товарах и связанных данных.
             string query = @"
                 SELECT 
                     p.products_name, 
@@ -114,16 +141,17 @@ namespace SokolovLechebnik.Windows
                     s.country LIKE @searchTerm OR 
                     p.cost LIKE @searchTerm";
 
+            // Подключение к базе данных и выполнение запроса.
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
-                dataAdapter.SelectCommand.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
-                DataTable dataTable = new DataTable();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection); // Адаптер данных для выполнения запроса.
+                dataAdapter.SelectCommand.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%"); // Добавляет параметр поиска.
+                DataTable dataTable = new DataTable(); // Таблица для хранения результатов запроса.
                 try
                 {
-                    dataAdapter.Fill(dataTable);
+                    dataAdapter.Fill(dataTable); // Заполняет таблицу результатами запроса.
 
-                    // Переименование колонок
+                    // Переименовывает колонки для отображения в DataGrid.
                     dataTable.Columns["products_name"].ColumnName = "Название препарата";
                     dataTable.Columns["diseases_name"].ColumnName = "Название болезни";
                     dataTable.Columns["symptoms"].ColumnName = "Симптомы";
@@ -134,14 +162,16 @@ namespace SokolovLechebnik.Windows
                     dataTable.Columns["country"].ColumnName = "Страна";
                     dataTable.Columns["cost"].ColumnName = "Цена";
 
-                    dataGrid.ItemsSource = dataTable.DefaultView;
+                    dataGrid.ItemsSource = dataTable.DefaultView; // Привязывает данные к DataGrid.
                 }
                 catch (SqlException ex)
                 {
-                    MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}");
+                    MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}"); // Обработка ошибки при запросе.
                 }
             }
         }
+
+        // Метод для настройки ComboBox, добавляя возможные столбцы для сортировки.
         private void SetupComboBox()
         {
             comboBoxColumns.Items.Add("Название препарата");
@@ -153,55 +183,58 @@ namespace SokolovLechebnik.Windows
             comboBoxColumns.Items.Add("Название поставщика");
             comboBoxColumns.Items.Add("Страна");
             comboBoxColumns.Items.Add("Цена");
-            comboBoxColumns.SelectedItem = "Название препарата";
+            comboBoxColumns.SelectedItem = "Название препарата"; // Устанавливает начальный выбранный элемент.
         }
 
-        // Остальные методы остаются без изменений...
-
+        // Обработчик для кнопки поиска, выполняющий поиск по введенному тексту.
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
-            string searchTerm = TextBoxForAvatar.Text.Trim();
+            string searchTerm = TextBoxForAvatar.Text.Trim(); // Извлекает и очищает текст запроса.
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                LoadData(searchTerm);
+                LoadData(searchTerm); // Загружает данные с учетом поискового запроса.
             }
             else
             {
-                MessageBox.Show("Пожалуйста, введите то, что хотите спросить у Лечи, например, название препарата, болезнь, симптом, способ применения, агрегатное состояние, тип препарата, название поставщика, страну изготовления или цену.");
+                MessageBox.Show("Пожалуйста, введите то, что хотите спросить у Лечи, например, название препарата, болезнь, симптом, способ применения, агрегатное состояние, тип препарата, название поставщика, страну изготовления или цену."); // Предупреждение об отсутствии текста.
             }
         }
 
+        // Обработчик для нажатия клавиши Enter в TextBox, выполняющий поиск.
         private void TextBoxForAvatar_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                string searchTerm = TextBoxForAvatar.Text.Trim();
-                LoadData(searchTerm);
+                string searchTerm = TextBoxForAvatar.Text.Trim(); // Получает текст запроса.
+                LoadData(searchTerm); // Выполняет поиск с указанным запросом.
             }
         }
 
+        // Обработчик изменения выбора столбца в ComboBox.
         private void ComboBoxColumns_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (comboBoxColumns.SelectedItem != null)
             {
-                selectedColumn = comboBoxColumns.SelectedItem.ToString();
+                selectedColumn = comboBoxColumns.SelectedItem.ToString(); // Устанавливает выбранный столбец для сортировки.
             }
         }
 
+        // Обработчик для кнопки сортировки, который применяет выбранный порядок сортировки.
         private void SortButton_Click(object sender, RoutedEventArgs e)
         {
-            sortAscending = checkBoxAscending.IsChecked == true;
-            SortData();
+            sortAscending = checkBoxAscending.IsChecked == true; // Устанавливает порядок сортировки.
+            SortData(); // Применяет сортировку.
         }
 
+        // Метод сортировки данных в DataGrid.
         private void SortData()
         {
-            ICollectionView dataView = CollectionViewSource.GetDefaultView(dataGrid.ItemsSource);
+            ICollectionView dataView = CollectionViewSource.GetDefaultView(dataGrid.ItemsSource); // Получает представление данных.
 
             if (dataView != null)
             {
-                dataView.SortDescriptions.Clear();
-                dataView.SortDescriptions.Add(new SortDescription(selectedColumn, sortAscending ? ListSortDirection.Ascending : ListSortDirection.Descending));
+                dataView.SortDescriptions.Clear(); // Очищает текущие параметры сортировки.
+                dataView.SortDescriptions.Add(new SortDescription(selectedColumn, sortAscending ? ListSortDirection.Ascending : ListSortDirection.Descending)); // Применяет новую сортировку.
             }
         }
     }
