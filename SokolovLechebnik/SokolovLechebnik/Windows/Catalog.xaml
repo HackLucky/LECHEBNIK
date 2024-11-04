@@ -62,6 +62,7 @@
                                 <Button Content="Главная" Margin="5" Click="ButtonMain_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                                 <Button Content="Профиль" Margin="5" Click="ButtonProfile_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                                 <Button Content="Корзина" Margin="5" Click="ButtonBasket_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
+                                <Button Content="Заказы" Margin="5" Click="ButtonOrders_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                                 <Button Content="Болезни" Margin="5" Click="ButtonDisease_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                                 <Button Content="О программе" Margin="5" Click="ButtonAbout_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                             </StackPanel>
@@ -230,6 +231,32 @@
                         <Button Content="СОРТИРОВАТЬ" Grid.Column="2" Click="SortButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="9" FontWeight="Bold">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderThickness="20,5">
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="Yellow" Offset="0.25"/>
+                                                <GradientStop Color="#00AFAFAF" Offset="0.25"/>
+                                                <GradientStop Color="#00AFAFAF" Offset="0.75"/>
+                                                <GradientStop Color="Yellow" Offset="0.75"/>
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Content="ДОБАВИТЬ В КОРЗИНУ" Grid.Column="3" Click="AddButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="6" FontWeight="Bold">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}" BorderThickness="20,5">
                                         <Border.BorderBrush>
                                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

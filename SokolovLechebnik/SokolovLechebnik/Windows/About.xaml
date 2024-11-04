@@ -31,6 +31,7 @@
                                 <Button Content="Профиль" Margin="5" Click="ButtonProfile_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                                 <Button Content="Каталог" Margin="5" Click="ButtonCatalog_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                                 <Button Content="Корзина" Margin="5" Click="ButtonBasket_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
+                                <Button Content="Заказы" Margin="5" Click="ButtonOrders_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                                 <Button Content="Болезни" Margin="5" Click="ButtonDisease_Click" Background="#FFAFAFAF" BorderBrush="#FF323232" FontFamily="Arial" FontWeight="Bold"/>
                             </StackPanel>
                         </Border>

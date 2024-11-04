@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\registration.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\registration.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\catalog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\catalog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|c:\\users\\user\\documents\\github\\lechebnik\\sokolovlechebnik\\sokolovlechebnik\\windows\\catalog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7BFE806-D496-4A81-8F88-18DE69D8FB73}|SokolovLechebnik\\SokolovLechebnik.csproj|solutionrelative:sokolovlechebnik\\windows\\catalog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,27 +35,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Registration.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Registration.xaml.cs",
-              "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Registration.xaml.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Registration.xaml.cs",
-              "RelativeToolTip": "SokolovLechebnik\\Windows\\Registration.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\App.xaml",
+              "RelativeDocumentMoniker": "SokolovLechebnik\\App.xaml",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\App.xaml",
+              "RelativeToolTip": "SokolovLechebnik\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-04T12:45:37.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Catalog.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Catalog.xaml.cs",
+              "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Catalog.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Catalog.xaml.cs",
+              "RelativeToolTip": "SokolovLechebnik\\Windows\\Catalog.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-01T20:44:35.673Z",
+              "WhenOpened": "2024-11-04T12:43:20.223Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Login.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Login.xaml.cs",
-              "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Login.xaml.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Login.xaml.cs",
-              "RelativeToolTip": "SokolovLechebnik\\Windows\\Login.xaml.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAEIAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-01T20:43:15.312Z",
+              "Title": "Catalog.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Catalog.xaml",
+              "RelativeDocumentMoniker": "SokolovLechebnik\\Windows\\Catalog.xaml",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LECHEBNIK\\SokolovLechebnik\\SokolovLechebnik\\Windows\\Catalog.xaml",
+              "RelativeToolTip": "SokolovLechebnik\\Windows\\Catalog.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-04T12:43:18.052Z",
               "EditorCaption": ""
             }
           ]
