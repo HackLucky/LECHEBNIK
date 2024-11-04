@@ -35,7 +35,7 @@ namespace SokolovLechebnik.Windows
         private bool sortAscending = true;
 
         private readonly int currentUserId;  // Поле для хранения id текущего пользователя
-        private readonly int selectedMedicineId;  // id выбранного лекарства из DataGrid
+        private int selectedMedicineId; // Переменная для хранения id выбранного товара
 
         // Конструктор для инициализации окна, загрузки данных, настройки ComboBox и добавления обработчиков событий.
         public Catalog()
@@ -107,7 +107,7 @@ namespace SokolovLechebnik.Windows
         private void ButtonBasket_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Basket>();
         private void ButtonOrders_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Orders>();
         private void ButtonDisease_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<DiseaseBook>();
-        private void ButtonAbout_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<About>();
+        private void ButtonAbout_Click(object sender, RoutedEventArgs e) => OpenWindowAndCloseCurrent<Cart>();
 
         // Метод загрузки данных из базы с использованием переданного поискового запроса.
         private void LoadData(string searchTerm)
@@ -172,6 +172,7 @@ namespace SokolovLechebnik.Windows
                     dataTable.Columns["cost"].ColumnName = "Цена";
 
                     dataGrid.ItemsSource = dataTable.DefaultView; // Привязывает данные к DataGrid.
+                    dataGrid.Items.Refresh();
                 }
                 catch (SqlException ex)
                 {
@@ -253,36 +254,134 @@ namespace SokolovLechebnik.Windows
             string input = Microsoft.VisualBasic.Interaction.InputBox("Введите количество товара:", "Добавить в корзину", "1");
             if (int.TryParse(input, out int quantity) && quantity > 0)
             {
-                AddToCart(quantity);  // Добавляем в корзину
+                // Отладочное сообщение для проверки значений
+                MessageBox.Show($"selectedMedicineId: {selectedMedicineId}\ncurrentUserId: {Login.currentUserId}");
+
+                if (CheckIfUserExists(Login.currentUserId) && CheckIfProductExists(selectedMedicineId)) // Проверка пользователя и товара
+                {
+                    AddToCart(selectedMedicineId, quantity);
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь не существует или товар не найден.", "Ошибка добавления в корзину");
+                }
             }
             else
             {
                 MessageBox.Show("Неверное количество.");
             }
         }
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Проверка, что выбранный элемент является строкой с данными
+            if (dataGrid.SelectedItem is DataRowView row)
+            {
+                // Извлекаем id_medicine из строки и сохраняем его в selectedMedicineId
+                selectedMedicineId = Convert.ToInt32(row["ID препарата"]);
+            }
+        }
+        // Метод для проверки существования товара
+        private bool CheckIfProductExists(int idMedicine)
+        {
+            SqlConnection connection = null;
+            try
+            {
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Products WHERE id_medicine = @id_medicine";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id_medicine", idMedicine);
+
+                    int count = (int)command.ExecuteScalar();
+
+                    return count > 0; // Если count > 0, товар существует
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Ошибка при проверке товара: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+        }
 
         // Метод для добавления товара в корзину
-        private void AddToCart(int quantity)
+        private void AddToCart(int idMedicine, int quantity)
         {
-            string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
-
-            string query = "INSERT INTO Carts (id_customer, id_medicine, quantity) VALUES (@id_customer, @id_medicine, @quantity)";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            SqlConnection connection = null;
+            try
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@id_customer", currentUserId);
-                command.Parameters.AddWithValue("@id_medicine", selectedMedicineId);
-                command.Parameters.AddWithValue("@quantity", quantity);
+                connection = new SqlConnection(connectionString);
+                connection.Open();
 
-                try
+                // Запрос для добавления товара в корзину
+                string query = "INSERT INTO Carts (id_customer, id_medicine, quantity) " + "VALUES (@id_customer, @id_medicine, @quantity)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    connection.Open();
+                    // Передаем параметры в запрос
+                    command.Parameters.AddWithValue("@id_customer", Login.currentUserId); // Используем currentUserId для id_customer
+                    command.Parameters.AddWithValue("@id_medicine", idMedicine);
+                    command.Parameters.AddWithValue("@quantity", quantity);
+
+                    // Выполняем запрос
                     command.ExecuteNonQuery();
+
                     MessageBox.Show("Товар успешно добавлен в корзину.");
                 }
-                catch (SqlException ex)
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Ошибка при добавлении товара в корзину: {ex.Message}");
+            }
+            finally
+            {
+                if (connection != null)
                 {
-                    MessageBox.Show($"Ошибка при добавлении товара в корзину: {ex.Message}");
+                    connection.Close();
+                }
+            }
+        }
+
+        // Метод для проверки существования пользователя в таблице Users
+        private bool CheckIfUserExists(int userId)
+        {
+            SqlConnection connection = null;
+            try
+            {
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Users WHERE id_customer = @id_customer";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id_customer", userId);
+
+                    int count = (int)command.ExecuteScalar();
+
+                    return count > 0; // Если count > 0, пользователь существует
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Ошибка при проверке пользователя: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
                 }
             }
         }

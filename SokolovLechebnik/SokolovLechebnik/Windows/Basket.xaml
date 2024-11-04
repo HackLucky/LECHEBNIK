@@ -225,7 +225,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Content="ПОСМОТРЕТЬ" Grid.Column="1" Click="InfoButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="15" FontWeight="Bold">
+                        <Button Content="ИЗМЕНИТЬ КОЛ" Grid.Column="1" Click="ChangeButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="14" FontWeight="Bold">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border Background="{TemplateBinding Background}" BorderThickness="20,5">

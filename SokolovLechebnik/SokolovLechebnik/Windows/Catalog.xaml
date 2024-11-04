@@ -281,7 +281,7 @@
                             </Button.Style>
                         </Button>
                     </Grid>
-                    <DataGrid x:Name="dataGrid" Background="#FF646464" BorderBrush="Black" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" AutoGenerateColumns="True" IsReadOnly="True"/>
+                    <DataGrid x:Name="dataGrid" SelectionChanged="dataGrid_SelectionChanged" Background="#FF646464" BorderBrush="Black" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" AutoGenerateColumns="True" IsReadOnly="True"/>
                 </Grid>
             </Border>
             <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Grid.Column="1" Grid.Row="0">

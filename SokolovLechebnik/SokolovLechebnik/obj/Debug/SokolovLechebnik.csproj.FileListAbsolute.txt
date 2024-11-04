@@ -68,3 +68,5 @@ C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\D
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\SokolovLechebnik.pdb
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Orders.g.cs
 C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Orders.baml
+C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Cart.g.cs
+C:\Users\User\Documents\GitHub\LECHEBNIK\SokolovLechebnik\SokolovLechebnik\obj\Debug\Windows\Cart.baml
