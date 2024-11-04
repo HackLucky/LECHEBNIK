@@ -1,15 +1,15 @@
-﻿using System; // Подключение стандартной библиотеки C# для базовых функций и типов данных
-using System.Data.SqlClient; // Подключение библиотеки для работы с базой данных SQL Server
-using System.Security.Cryptography; // Подключение библиотеки для криптографических операций, например, для хеширования паролей
-using System.Text; // Подключение библиотеки для работы с текстовыми строками
-using System.Text.RegularExpressions; // Подключение библиотеки для регулярных выражений, которые будут использованы для валидации
-using System.Threading.Tasks; // Подключение библиотеки для работы с асинхронным программированием
-using System.Windows; // Подключение библиотеки для создания оконных приложений WPF
-using System.Windows.Media; // Подключение библиотеки для работы с графикой и цветом в WPF
-using System.Windows.Media.Imaging; // Подключение библиотеки для работы с изображениями в WPF
-namespace SokolovLechebnik.Windows // Объявление пространства имен для организации кода в логическую группу
+﻿using System;
+using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+namespace SokolovLechebnik.Windows
 {
-    public partial class Registration : Window // Определение класса Registration, наследующегося от WPF-класса Window
+    public partial class Registration : Window
     {
         private bool isLight = true; // Переменная, отвечающая за режим цвета (светлый или темный)
         // Строка с приветственным текстом, которая показывается пользователю при открытии окна
@@ -208,7 +208,8 @@ namespace SokolovLechebnik.Windows // Объявление пространст�
 
                     try
                     {
-                        string query = @"INSERT INTO Users (second_name, first_name, patronymic, phone_number, mail, password, recovery_code) VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode)";
+                        string query = @"INSERT INTO Users (second_name, first_name, patronymic, phone_number, mail, password, recovery_code, id_role) 
+                                 VALUES (@secondName, @firstName, @patronymic, @phoneNumber, @mail, @password, @recoveryCode, @idRole)";
                         using (SqlCommand command = new SqlCommand(query, connection, transaction))
                         {
                             command.Parameters.AddWithValue("@secondName", secondName);
@@ -218,6 +219,7 @@ namespace SokolovLechebnik.Windows // Объявление пространст�
                             command.Parameters.AddWithValue("@mail", mail);
                             command.Parameters.AddWithValue("@password", HashPassword(password));
                             command.Parameters.AddWithValue("@recoveryCode", recoveryCode);
+                            command.Parameters.AddWithValue("@idRole", 4);
 
                             await command.ExecuteNonQueryAsync();
                         }

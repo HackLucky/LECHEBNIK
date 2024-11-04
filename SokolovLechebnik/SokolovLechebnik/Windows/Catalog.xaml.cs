@@ -9,12 +9,16 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace SokolovLechebnik.Windows
 {
     // Класс Catalog представляет собой окно WPF, которое отображает каталог товаров.
     public partial class Catalog : Window
     {
+        // Строка подключения к базе данных.
+        private string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
+
         // Переменная для отслеживания текущего состояния темы (true - светлая, false - темная).
         private bool isLight = true;
 
@@ -29,6 +33,9 @@ namespace SokolovLechebnik.Windows
 
         // Переменная для отслеживания порядка сортировки (true - по возрастанию, false - по убыванию).
         private bool sortAscending = true;
+
+        private readonly int currentUserId;  // Поле для хранения id текущего пользователя
+        private readonly int selectedMedicineId;  // id выбранного лекарства из DataGrid
 
         // Конструктор для инициализации окна, загрузки данных, настройки ComboBox и добавления обработчиков событий.
         public Catalog()
@@ -105,11 +112,10 @@ namespace SokolovLechebnik.Windows
         // Метод загрузки данных из базы с использованием переданного поискового запроса.
         private void LoadData(string searchTerm)
         {
-            string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;"; // Строка подключения к базе данных.
-
             // SQL-запрос с объединением таблиц для извлечения информации о товарах и связанных данных.
             string query = @"
                 SELECT 
+                    p.id_medicine,
                     p.products_name, 
                     d.diseases_name, 
                     d.symptoms, 
@@ -140,7 +146,8 @@ namespace SokolovLechebnik.Windows
                     pt.products_type LIKE @searchTerm OR 
                     s.suppliers_name LIKE @searchTerm OR 
                     s.country LIKE @searchTerm OR 
-                    p.cost LIKE @searchTerm";
+                    p.cost LIKE @searchTerm OR 
+                    p.id_medicine LIKE @searchTerm";
 
             // Подключение к базе данных и выполнение запроса.
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -153,6 +160,7 @@ namespace SokolovLechebnik.Windows
                     dataAdapter.Fill(dataTable); // Заполняет таблицу результатами запроса.
 
                     // Переименовывает колонки для отображения в DataGrid.
+                    dataTable.Columns["id_medicine"].ColumnName = "ID препарата";
                     dataTable.Columns["products_name"].ColumnName = "Название препарата";
                     dataTable.Columns["diseases_name"].ColumnName = "Название болезни";
                     dataTable.Columns["symptoms"].ColumnName = "Симптомы";
@@ -236,6 +244,46 @@ namespace SokolovLechebnik.Windows
             {
                 dataView.SortDescriptions.Clear(); // Очищает текущие параметры сортировки.
                 dataView.SortDescriptions.Add(new SortDescription(selectedColumn, sortAscending ? ListSortDirection.Ascending : ListSortDirection.Descending)); // Применяет новую сортировку.
+            }
+        }
+        // Обработчик нажатия кнопки AddButton
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Окно для ввода количества товара
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Введите количество товара:", "Добавить в корзину", "1");
+            if (int.TryParse(input, out int quantity) && quantity > 0)
+            {
+                AddToCart(quantity);  // Добавляем в корзину
+            }
+            else
+            {
+                MessageBox.Show("Неверное количество.");
+            }
+        }
+
+        // Метод для добавления товара в корзину
+        private void AddToCart(int quantity)
+        {
+            string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;";
+
+            string query = "INSERT INTO Carts (id_customer, id_medicine, quantity) VALUES (@id_customer, @id_medicine, @quantity)";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id_customer", currentUserId);
+                command.Parameters.AddWithValue("@id_medicine", selectedMedicineId);
+                command.Parameters.AddWithValue("@quantity", quantity);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Товар успешно добавлен в корзину.");
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show($"Ошибка при добавлении товара в корзину: {ex.Message}");
+                }
             }
         }
     }

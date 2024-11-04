@@ -16,9 +16,12 @@ namespace SokolovLechebnik.Windows
         // Начальный текст приветствия для аватара, который содержит подсказки для пользователя.
         private readonly string initialText = "Приветствую!\nМеня зовут Леча!\nДавайте авторизируем Вас, чтобы дальше пользоваться программой!\nЯ помогу Вам войти в учётную запись!\n\nВы можете поговорить со мной через текстовое поле снизу, задав мне вопросы:\nкто ты? как дела? что делаешь? напишешь факт?\n\nВы всегда сможете вернуться к этому сообщению, тыкнув на меня;)";
 
-        
+        // Строка подключения к базе данных.
         private readonly string connectionString = "Server=SPECTRAPRIME;Database=LECHEBNIK;Integrated Security=True;"; // Строка подключения к базе данных.
-
+        
+        // Переменная для хранения ID авторизованного пользователя
+        public static int currentUserId;
+        
         // Конструктор для инициализации окна и установки текста приветствия в TextBlock аватара.
         public Login()
         {
@@ -79,97 +82,107 @@ namespace SokolovLechebnik.Windows
         {
             TextBlockAvatar.Text = initialText; // Возвращает начальный текст аватара.
         }
-
-        
-        private void ButtonVoity_Click(object sender, RoutedEventArgs e) // Обработчик для кнопки входа в систему.
+        // Метод для аутентификации пользователя и сохранения его ID
+        private bool AuthenticateUser(string email, string password)
         {
-            string email = TextBoxMail.Text.Trim(); // Получает текст из TextBox для почты и удаляет лишние пробелы.
-            string password = TextBoxPass.Password; // Получает пароль из PasswordBox.
-
-            
-            if (AuthenticateUser(email, password)) // Проверяет учетные данные пользователя. Если верны, открывает главное окно.
-            {
-                var myForm = new Main(); // Создает новое главное окно.
-                myForm.Show(); // Показывает главное окно.
-                this.Close(); // Закрывает текущее окно (окно входа).
-            }
-            else
-            {
-                
-                MessageBox.Show("Неправильный адрес электронной почты или пароль.", "ОШИБКА ВВОДА"); // Если учетные данные неверны, показывает сообщение об ошибке.
-            }
-        }
-
-        
-        private bool AuthenticateUser(string email, string password) // Метод для аутентификации пользователя, проверяющий почту и пароль.
-        {
-            SqlConnection connection = null; // Переменная для подключения к базе данных.
+            SqlConnection connection = null;
             try
             {
-                connection = new SqlConnection(connectionString); // Создает новое подключение с использованием строки подключения.
-                connection.Open(); // Открывает подключение.
+                connection = new SqlConnection(connectionString); // Подключение к базе данных
+                connection.Open();
 
-                
-                string query = "SELECT password FROM Users WHERE mail = @mail"; // SQL-запрос для получения хэшированного пароля пользователя по его почте.
+                // Запрос на выборку данных пользователя по email и паролю (хэш)
+                string query = "SELECT id_customer, password FROM Users WHERE mail = @mail AND is_active = 1";
+
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Добавляет параметр email к SQL-запросу.
-                    command.Parameters.AddWithValue("@mail", email);
+                    command.Parameters.AddWithValue("@mail", email); // Добавление параметра email в запрос
 
-                    // Выполняет запрос и получает хэшированный пароль из базы данных.
-                    var storedPasswordHash = command.ExecuteScalar() as string;
-
-                    // Если хэшированный пароль пустой (пользователь не найден), возвращает false.
-                    if (string.IsNullOrEmpty(storedPasswordHash))
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        return false;
+                        if (reader.Read()) // Проверяем, что пользователь с данным email найден
+                        {
+                            int idCustomer = reader.GetInt32(0); // Получаем id_customer
+                            string storedPasswordHash = reader.GetString(1); // Получаем хэш пароля из базы данных
+
+                            // Хэшируем введённый пароль для сравнения с базой данных
+                            string passwordHash = HashPassword(password);
+
+                            // Отладочное сообщение: Выводим email, хэшированный пароль и значение из базы
+                            MessageBox.Show($"Email: {email}\nВведенный хэш: {passwordHash}\nХэш в базе данных: {storedPasswordHash}");
+
+                            // Сравниваем хэши
+                            if (storedPasswordHash == passwordHash)
+                            {
+                                // Сохраняем идентификатор текущего пользователя для сессии (переменная должна быть определена в коде)
+                                currentUserId = idCustomer;
+                                MessageBox.Show($"Аутентификация успешна для пользователя: {email}");
+                                return true; // Если пароли совпадают, возвращаем true
+                            }
+                            else
+                            {
+                                MessageBox.Show("Пароль не совпадает.", "Ошибка аутентификации");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пользователь не найден или не активен.", "Ошибка аутентификации");
+                        }
                     }
-
-                    // Генерирует хэш для введенного пользователем пароля.
-                    string passwordHash = HashPassword(password);
-
-                    // Сравнивает хэши: если совпадают, возвращает true (пароль верен).
-                    return storedPasswordHash == passwordHash;
                 }
+
+                return false; // Если нет совпадений, возвращаем false
             }
             catch (SqlException ex)
             {
-                // Обрабатывает ошибки SQL-запроса и показывает сообщение.
                 MessageBox.Show($"Ошибка подключения к базе данных: {ex.Message}");
                 return false;
             }
             catch (Exception ex)
             {
-                // Обрабатывает любые другие ошибки и показывает сообщение.
                 MessageBox.Show($"Неизвестная ошибка: {ex.Message}");
                 return false;
             }
             finally
             {
-                // Закрывает подключение к базе данных, если оно было открыто.
                 if (connection != null)
                 {
-                    connection.Close();
+                    connection.Close(); // Закрываем соединение с базой данных
                 }
             }
         }
-        
-        private string HashPassword(string password) // Метод для хэширования пароля с использованием алгоритма SHA-256.
+
+        // Обработчик кнопки для входа в систему
+        private void ButtonVoity_Click(object sender, RoutedEventArgs e)
         {
-            using (SHA256 sha256 = SHA256.Create()) // Создает новый экземпляр SHA-256.
+            string email = TextBoxMail.Text.Trim(); // Получаем email из текстового поля TextBoxMail
+            string password = TextBoxPass.Password; // Получаем пароль из поля PasswordBox (TextBoxPass)
+
+            if (AuthenticateUser(email, password)) // Проверяем введённые данные через метод аутентификации
             {
-                
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password)); // Преобразует пароль в массив байтов и вычисляет хэш.
+                var myForm = new Main(); // Если данные верны, создаём и показываем основное окно программы
+                myForm.Show();
+                this.Close(); // Закрываем окно входа
+            }
+            else
+            {
+                // Если аутентификация не удалась, показываем сообщение об ошибке
+                MessageBox.Show("Неправильный адрес электронной почты или пароль.", "ОШИБКА ВВОДА");
+            }
+        }
 
-
-                StringBuilder builder = new StringBuilder(); // Строит строковое представление хэша.
+        // Метод для хэширования пароля с использованием алгоритма SHA-256
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password)); // Преобразуем пароль в хэш
+                StringBuilder builder = new StringBuilder();
                 foreach (var b in bytes)
                 {
-                    builder.Append(b.ToString("x2")); // Преобразует каждый байт в шестнадцатеричную строку.
+                    builder.Append(b.ToString("x2")); // Преобразуем байты в шестнадцатеричное представление
                 }
-
-                
-                return builder.ToString(); // Возвращает итоговый хэш как строку.
+                return builder.ToString(); // Возвращаем хэш пароля
             }
         }
     }

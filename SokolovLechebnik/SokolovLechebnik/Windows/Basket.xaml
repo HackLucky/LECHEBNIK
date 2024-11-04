@@ -224,9 +224,8 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Content="ПОСМОТРЕТЬ" Grid.Column="2" Click="InfoButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="10" FontWeight="Bold">
+                        <Button Content="ПОСМОТРЕТЬ" Grid.Column="1" Click="InfoButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="15" FontWeight="Bold">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border Background="{TemplateBinding Background}" BorderThickness="20,5">
@@ -252,7 +251,7 @@
                                 </Style>
                             </Button.Style>
                         </Button>
-                        <Button Content="УДАЛИТЬ" Grid.Column="3" Click="DelButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="11" FontWeight="Bold">
+                        <Button Content="УДАЛИТЬ" Grid.Column="2" Click="DelButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="15" FontWeight="Bold">
                             <Button.Template>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}" BorderThickness="20,5">
@@ -278,33 +277,7 @@
                                 </Style>
                             </Button.Style>
                         </Button>
-                        <Button Content="ЗАКАЗАТЬ" Grid.Column="0" Click="OrderButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="11" FontWeight="Bold">
-                            <Button.Template>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border Background="{TemplateBinding Background}" BorderThickness="20,5">
-                                        <Border.BorderBrush>
-                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                <GradientStop Color="Yellow" Offset="0.25"/>
-                                                <GradientStop Color="#00AFAFAF" Offset="0.25"/>
-                                                <GradientStop Color="#00AFAFAF" Offset="0.75"/>
-                                                <GradientStop Color="Yellow" Offset="0.75"/>
-                                            </LinearGradientBrush>
-                                        </Border.BorderBrush>
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-                                    <Setter Property="Effect">
-                                        <Setter.Value>
-                                            <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </Button.Style>
-                        </Button>
-                        <Button Content="СОРТИРОВАТЬ" Grid.Column="1" Click="SortButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="9" FontWeight="Bold">
+                        <Button Content="ЗАКАЗАТЬ" Grid.Column="0" Click="OrderButton_Click" FontFamily="Arial" Background="#00000000" Foreground="Yellow" Padding="0,0,0,0" BorderBrush="{x:Null}" Cursor="Hand" FontSize="15" FontWeight="Bold">
                             <Button.Template>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border Background="{TemplateBinding Background}" BorderThickness="20,5">
