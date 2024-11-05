@@ -172,6 +172,24 @@
                                 <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"></DropShadowEffect>
                             </Setter.Value>
                         </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF969600"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#FF969600" BlurRadius="15" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Black" BlurRadius="20" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </Button.Style>
                 <TextBlock x:Name="TextBlockExit" Text="ВЫЙТИ ИЗ ПРОГРАММЫ" Cursor="Hand"></TextBlock>
@@ -185,7 +203,10 @@
                 <Border.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
                 </Border.Effect>
-                <TextBlock x:Name="TextBlockMain" Text=" " FontFamily="Arial" FontSize="14" TextWrapping="Wrap" Foreground="Lime" Margin="5,5,5,5"/>
+                <TextBlock x:Name="TextBlockMain" Text="Аптека — это учреждение, которое занимается изготовлением, хранением, продажей и отпуском лекарственных средств и медицинских товаров.
+Электронная аптека — это онлайн-платформа, через которую можно заказывать лекарства и медицинские товары с доставкой на дом. Электронные аптеки предоставляют удобство удалённой покупки, позволяя клиентам изучать ассортимент, читать описания препаратов и оформлять заказы, не выходя из дома.
+Программа электронной аптеки — это программное обеспечение, разработанное для автоматизации процессов электронной аптеки. Оно объединяет функционал для обработки заказов, взаимодействия с клиентами и управления базой данных о лекарствах и поставщиках.
+" FontFamily="Arial" FontSize="19" TextWrapping="Wrap" Foreground="Lime" Margin="5,5,5,5"/>
             </Border>
             <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Grid.Column="1" Grid.Row="0">
                 <Border.Effect>
@@ -196,7 +217,7 @@
                 <Border.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="1" ShadowDepth="4" Opacity="0.9"/>
                 </Border.Effect>
-                <TextBlock x:Name="TextBlockAvatar" Text=" " FontFamily="Arial" FontSize="14" TextWrapping="Wrap" Foreground="Lime" Margin="5,5,5,5"/>
+                <TextBlock x:Name="TextBlockAvatar" Text="Вы находитесь в главном меню программы, где можно получить полезные сведения)" FontFamily="Arial" FontSize="19" TextWrapping="Wrap" Foreground="Lime" Margin="5,5,5,5"/>
             </Border>
             <Border BorderBrush="#FF323232" BorderThickness="3,3,3,3" Grid.Column="2" Grid.Row="0">
                 <Border.Effect>

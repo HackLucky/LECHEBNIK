@@ -166,6 +166,24 @@
                                     <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
                                 </Setter.Value>
                             </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#FF969600"/>
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="#FF969600" BlurRadius="15" ShadowDepth="0"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="Black" BlurRadius="20" ShadowDepth="0"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
                         </Style>
                     </Button.Style>
                 </Button>
@@ -201,6 +219,24 @@
                                 <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"></DropShadowEffect>
                             </Setter.Value>
                         </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF969600"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#FF969600" BlurRadius="15" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Black" BlurRadius="20" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </Button.Style>
                 <TextBlock x:Name="TextBlockExit" Text="ВЫЙТИ ИЗ ПРОГРАММЫ" Cursor="Hand"></TextBlock>
@@ -251,6 +287,24 @@
                                             <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
                                         </Setter.Value>
                                     </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#FF969600"/>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#FF969600" BlurRadius="15" ShadowDepth="0"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="Black" BlurRadius="20" ShadowDepth="0"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                             </Button.Style>
                         </Button>
@@ -277,6 +331,24 @@
                                             <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
                                         </Setter.Value>
                                     </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#FF969600"/>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#FF969600" BlurRadius="15" ShadowDepth="0"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="Black" BlurRadius="20" ShadowDepth="0"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                             </Button.Style>
                         </Button>

@@ -67,7 +67,6 @@ namespace SokolovLechebnik.Windows
         {
             TextBlockAvatar.Text = "Подсказка: в это текстовое поле нужно ввести Ваш номер телефона. Он нужен для верификации и возможности связи.";
         }
-
         private void TextBoxTelephone_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBlockAvatar.Text = initialText;
@@ -98,18 +97,52 @@ namespace SokolovLechebnik.Windows
         }
         private async void ButtonReg_Click(object sender, RoutedEventArgs e) // Обработчик кнопки "Зарегистрироваться"
         {
+            // Объявляем переменные для пароля вне блока try, чтобы они были доступны в любом месте метода
+            string password = TextBoxPass.Password;
+            string retryPassword = TextBoxRetryPass.Password;
+
+            // Проверка паролей перед началом регистрации
+            try
+            {
+                // Проверка, что поля не пустые
+                if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(retryPassword))
+                {
+                    throw new ArgumentException("Пароль и его подтверждение не могут быть пустыми");
+                }
+
+                // Сравнение паролей
+                if (password != retryPassword)
+                {
+                    MessageBox.Show("Пароли не совпадают. Попробуйте снова.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return; // Выход из метода, если пароли не совпадают
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return; // Выход из метода, если возникла ошибка
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return; // Выход из метода в случае общей ошибки
+            }
+
+            // Если пароли совпадают, продолжаем процесс регистрации
+
             if (!ValidateInput()) // Проверка на корректность ввода
             {
                 return; // Выход, если валидация не пройдена
             }
+
             // Получение значений из текстовых полей
             string secondName = TextBoxFamilia.Text.Trim();
             string firstName = TextBoxName.Text.Trim();
             string patronymic = TextBoxOtchestvo.Text.Trim();
             string phoneNumber = TextBoxTelephone.Text.Trim();
             string mail = TextBoxMail.Text.Trim();
-            string password = TextBoxPass.Password;
             string recoveryCode = GenerateRecoveryCode(); // Генерация кода восстановления
+
             try
             {
                 if (await UserExistsAsync(phoneNumber, mail)) // Проверка существования пользователя с таким номером телефона или почтой
@@ -117,7 +150,10 @@ namespace SokolovLechebnik.Windows
                     MessageBox.Show("Пользователь с таким номером телефона или почтой уже зарегистрирован.", "ОШИБКА РЕГИСТРАЦИИ");
                     return;
                 }
+
+                // Теперь password доступен здесь, так как он был объявлен выше
                 await InsertUserToDatabaseAsync(secondName, firstName, patronymic, phoneNumber, mail, password, recoveryCode); // Добавление нового пользователя в базу данных
+
                 var myForm = new Main(); // Переход на основное окно программы
                 myForm.Show();
                 this.Close();
